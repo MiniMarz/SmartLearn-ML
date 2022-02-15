@@ -198,3 +198,22 @@ public class Cluster
     double max=0, min=0;
     for (int i=0;i<distances.length;i++)
     {
+      for (int j=0;j<distances[i].length;j++)
+      {
+        current=distances[i][j];
+        if (current>max)
+          max=current;
+        if (current<min)
+          min=current;
+      }
+    }
+    // scaling the distances
+    for (int i=0;i<distances.length;i++)
+    {
+      for (int j=0;j<distances[i].length;j++)
+      {
+        distances[i][j]=(distances[i][j]-min)/(max-min);
+      }
+    }
+  }
+}
