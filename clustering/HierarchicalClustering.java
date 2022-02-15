@@ -119,3 +119,57 @@ public class HierarchicalClustering
     System.out.println("Number of Clusters = "+size+"   Merging... "+c2.getId()+" into "+c1.getId());
     System.out.println("Cluster "+c1.getId()+" is now = "+c1.toString());
   }
+
+  /**
+   * Write into a file the mean internal distance of the merged cluster,
+   * the mean distance and minimum distance between two clusters and
+   * the mean point happiness of all clusters.
+  **/
+  public void reportResults(FileWriter out, int numClusters, Cluster c1, Cluster c2) throws IOException
+  {
+    double meanInternal=c1.meanInternalDistance();
+    double meanDist=c1.meanDistance(c2);
+    double meanHappiness=computeMeanHappiness();
+    double minDist=c1.minimumDistance(c2);
+    out.write(numClusters + " " + meanInternal + " " + meanDist + " " + minDist
+              + " " + meanHappiness + "\r");
+  }
+
+  /**
+   * Return the mean distance between clusters.
+  **/
+  public double computeMeanHappiness()
+  {
+    double sum=0;
+    int denom=0;      // may change that for closed form
+    for (int i=0;i<size;i++)
+    {
+      for (int j=i+1;j<size;j++)
+      {
+        sum=sum + getCluster(i).meanDistance(getCluster(j));
+        denom++;
+      }
+    }
+    return sum/denom;
+  }
+
+  /**
+   * Entry point to this program.
+   * Input is a data set containing the distances between points in diagonal form
+   * and the name of the file to store the results in.
+  **/
+  public static void main(String[] args)
+  {
+    if (args.length!=2)
+    {
+      System.out.println("Wrong usage. Type java HierarchicalClustering [dataFile] [saveFile]");
+    }
+    HierarchicalClustering algo=new HierarchicalClustering();
+    algo.init(args[0]);
+    try
+    {
+      algo.run(args[1]);
+    }
+    catch(IOException e){}
+  }
+}
