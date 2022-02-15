@@ -69,3 +69,73 @@ public class Cluster
       {
         currentDist=dist(getPoint(i),c.getPoint(j));
         if (currentDist<minDist)
+          minDist=currentDist;
+      }
+    }
+    return minDist;
+  }
+
+  /**
+   * Compute the mean internal distance of this cluster.
+  **/
+  public double meanInternalDistance()
+  {
+    if (size==1)
+      return 0;
+    else
+      return meanDistance(this)*size/(size-1);
+  }
+
+  /**
+   * Get the point at the specified index i of this cluster.
+  **/
+  public int getPoint(int i)
+  {
+    return ((Integer) points.get(i)).intValue();
+  }
+
+  /**
+   * Update the balanced parenthesis form of this cluster
+   * after merging with a cluster c.
+  **/
+  public void updateRepresentation(Cluster c)
+  {
+    setRepresentation("(" + representation + "" + c.getRepresentation() + ")");
+  }
+
+  public void setRepresentation(String representation)
+  {
+    this.representation=representation;
+  }
+
+  public String getRepresentation()
+  {
+    return representation;
+  }
+
+  public Vector getPoints()
+  {
+    return points;
+  }
+
+  public int getSize()
+  {
+    return size;
+  }
+
+  public int getId()
+  {
+    return id;
+  }
+
+  public String toString()
+  {
+    return representation;
+  }
+
+  public boolean equals(Cluster c)
+  {
+    return (id==c.getId());
+  }
+
+  /**
