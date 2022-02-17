@@ -82,3 +82,58 @@ public class TreeDrawing extends Canvas
       //System.out.println("Left = "+s.substring(1,index+1));
       return s.substring(1,index+1);
     }
+  }
+
+  /**
+   * Get the right part of string s.
+  **/
+  public String getRight(String s)
+  {
+    if (s.charAt(s.length()-2)!=')')
+    {
+      return s;
+    }
+    else
+    {
+      String left=getLeft(s);
+      //System.out.println("Right = "+s.substring(left.length()+1,s.length()-1));
+      return s.substring(left.length()+1,s.length()-1);
+    }
+  }
+
+  /**
+   * Recursively draw a tree of string s at the coordinates (x,y).
+  **/
+  public void drawTree(Graphics g,String s,int x,int y)
+  {
+    g.drawOval(x,y,2,2);
+
+    if (s.charAt(1)!='(')
+    {
+      //System.out.println("I'm out with length= "+s.length());
+      return;
+    }
+    String left=getLeft(s);
+    String right=getRight(s);
+
+    // scales coordinates to fit the tree.
+    int xLeft=x-left.length()/25;
+    int xRight=x+right.length()/25;
+    //int yNew=y+yInc;
+    int yLeft=y+(int)Math.log(left.length()/3)+yInc;
+    int yRight=y+(int)Math.log(right.length()/3)+yInc;
+
+    System.out.println("Left = "+left);
+    System.out.println("Right = "+right);
+
+    g.drawLine(x,y,xLeft,yLeft);
+    g.drawLine(x,y,xRight,yRight);
+
+    drawTree(g,left,xLeft,yLeft);
+    drawTree(g,right,xRight,yRight);
+  }
+
+  public void paint(Graphics g)
+  {
+    drawTree(g,balancedString,xInit,yInit);
+  }
