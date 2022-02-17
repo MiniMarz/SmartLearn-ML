@@ -137,3 +137,37 @@ public class TreeDrawing extends Canvas
   {
     drawTree(g,balancedString,xInit,yInit);
   }
+
+
+
+  /**
+   * Entry point to this program.
+   * Input is a well formed balanced parenthesis string.
+  **/
+  public static void main(String[] args)
+  {
+    if (args.length!=1)
+    {
+      System.out.println("Wrong usage. Type java TreeDrawing [file]");
+    }
+    else
+    {
+      String data=new String();
+      try
+      {
+        BufferedReader bf=new BufferedReader(new FileReader(args[0]));
+        data=bf.readLine();
+      }
+      catch(IOException e){}
+      String test="(((((5)((1)(2)))((3)(4)))1)(((0)((5)(8)))(((9)(0))(3))))";
+      //String test2=((((165)(442))((396)(397)))(244));
+      System.out.println(data);
+
+      TreeDrawing tree=new TreeDrawing(data);
+      Frame f=new Frame();
+      f.setSize(1000,1000);
+      f.add(tree);
+      f.show();
+    }
+  }
+}
