@@ -108,3 +108,23 @@ public class EANN {
         System.out.println("Iteration: " + iterationNum);
         System.out.println("Average Number of Hidden Neurons: " + aveNumNeurons);
         System.out.println("Best Fitness: " + bestFitness);
+        System.out.println("Average Fitness: " + aveFitness);
+        System.out.println("Best solution: " + bestIndividual.toString());
+        System.out.println("Training Acc: " + bestAcc);
+        //System.out.println("Average Training Acc: " + aveTrainingAcc);
+        System.out.println("Evaluation Acc: "+ evalAcc);
+        System.out.println();
+        out.write("\n" + iterationNum + "," + bestAcc + "," + evalAcc + "," + numNeurons + "\r");
+      }
+      iterationNum++;
+    }
+    System.out.println("---------------------------------------------------------");
+    aveNumNeurons=algorithm.computeAveNumHiddenNeurons();
+    System.out.println("Training Acc: " + bestAcc);
+    System.out.println("Evaluation Acc: "+ evalAcc);
+    System.out.println("Solution is " + bestIndividual.toString());
+    out.write("\n" + iterationNum + "," + bestAcc + "," + evalAcc + "," + numNeurons + "\r");
+    out.close();
+  }
+
+}
