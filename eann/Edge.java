@@ -16,4 +16,5 @@ public class Edge implements Serializable
   private Neuron dest;	            // the neuron it is connected to in layer i+1
   private int id;	            // identifier for the edge
   private int mode;	            // the mode to use for update rule
-  private double deltaWeight;       // the ch
+  private double deltaWeight;       // the change in weight of this edge
+  private double deltaWeig
