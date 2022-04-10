@@ -19,4 +19,5 @@ public class Edge implements Serializable
   private double deltaWeight;       // the change in weight of this edge
   private double deltaWeightOld;    // keep track of the old value of the change in weight
 
-  // bac
+  // backpropation parameters
+  private double momentum = 0.2;	// momentu
