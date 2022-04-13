@@ -31,4 +31,5 @@ public class Edge implements Serializable
   * @param child is the neuron it is connected to in layer i+1
   * @param lr is the learning rate it is initialized to
   * @param idd is the id of this Edge
-  * @param momentum is the momentum rate 
+  * @param momentum is the momentum rate this edge is initialized to
+  * @param mode indicates the m
