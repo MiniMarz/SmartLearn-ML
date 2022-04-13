@@ -21,4 +21,9 @@ public class Edge implements Serializable
 
   // backpropation parameters
   private double momentum = 0.2;	// momentum term in order not to get stuck in local minima
-  private double learningRate = 0.3;	// learning rate changes the speed of how convergence
+  private double learningRate = 0.3;	// learning rate changes the speed of how convergence takes place
+
+  /*********** Methods *****************/
+
+  /**
+  * E
