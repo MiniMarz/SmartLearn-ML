@@ -42,4 +42,9 @@ public class Edge implements Serializable
     this.id=idd;
     this.momentum=momentum;
     this.mode=mode;
-    this.
+    this.deltaWeight=0;
+    this.deltaWeightOld=0;
+  }
+
+  /**
+  * Resets t
