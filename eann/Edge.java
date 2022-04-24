@@ -47,4 +47,5 @@ public class Edge implements Serializable
   }
 
   /**
-  * Resets t
+  * Resets the weight for the edge with some random value
+  * Chooses the weights uniformly
