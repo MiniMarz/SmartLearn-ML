@@ -58,4 +58,10 @@ public class Edge implements Serializable
     if (Math.random()>1/2.0)
       weight=Math.random()*w;
     else
-      weight=-1*Math.random()*
+      weight=-1*Math.random()*w;
+  }
+
+  /**
+  * Sets the momentum of the neuron
+  **/
+  public void setM
