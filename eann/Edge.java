@@ -93,4 +93,9 @@ public class Edge implements Serializable
   {
     Neuron s=getSource();
     deltaWeight=deltaWeight + learningRate*(1-momentum)*errterm*s.getValue()
-                            + momentum*deltaWeight
+                            + momentum*deltaWeightOld;
+  }
+
+  /**
+  * The change in weight is saved and reinitialized
+  **
