@@ -98,4 +98,7 @@ public class Edge implements Serializable
 
   /**
   * The change in weight is saved and reinitialized
-  **
+  **/
+  public void initDeltaWeight()
+  {
+    deltaWeightOld=deltaWeight;   // f
