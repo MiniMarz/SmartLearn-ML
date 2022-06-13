@@ -106,4 +106,8 @@ public class Edge implements Serializable
   }
 
   /**
-  * Update the weight of th
+  * Update the weight of this edge
+  **/
+  public void updateWeight()
+  {
+    weight=weight + del
