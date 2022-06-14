@@ -114,4 +114,11 @@ public class Edge implements Serializable
   }
 
   /**
-  * @return the weight for this 
+  * @return the weight for this edge
+  **/
+  public double getWeight()
+  {
+    return weight;
+  }
+
+ 
