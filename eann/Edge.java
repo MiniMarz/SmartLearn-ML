@@ -125,4 +125,9 @@ public class Edge implements Serializable
   * @return the source neuron for this edge
   **/
   public Neuron getSource()
-  
+  {
+    return source;
+  }
+
+  /**
+  * @return the destination neuron for
