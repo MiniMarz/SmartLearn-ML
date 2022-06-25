@@ -121,4 +121,8 @@ public class Edge implements Serializable
     return weight;
   }
 
- 
+  /**
+  * @return the source neuron for this edge
+  **/
+  public Neuron getSource()
+  
