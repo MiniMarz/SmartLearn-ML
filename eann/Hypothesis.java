@@ -4,4 +4,6 @@
 */
 public abstract class Hypothesis
 {
-  /**************** Variables **********
+  /**************** Variables ********************/
+
+  static int numInputNeurons;                           // Number of
