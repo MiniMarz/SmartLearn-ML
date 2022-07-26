@@ -7,4 +7,6 @@ public abstract class Hypothesis
   /**************** Variables ********************/
 
   static int numInputNeurons;                           // Number of input neurons
-  static int numOutputNeurons;                 
+  static int numOutputNeurons;                          // Number of output neurons
+  static DataSet trainingSet;
+  static DataSet e
