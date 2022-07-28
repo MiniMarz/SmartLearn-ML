@@ -20,4 +20,6 @@ public abstract class Hypothesis
   abstract public void computeFitness();
 
   // Crossover with another Hypothesis
-  abstract public vo
+  abstract public void crossover(Hypothesis otherParent);
+
+  // Mutate this Hypothesis
