@@ -23,3 +23,7 @@ public abstract class Hypothesis
   abstract public void crossover(Hypothesis otherParent);
 
   // Mutate this Hypothesis
+  abstract public void mutate();
+
+  // Get the representation of this hypothesis
+  abstr
