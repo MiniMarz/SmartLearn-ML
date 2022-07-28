@@ -29,4 +29,6 @@ public abstract class Hypothesis
   abstract public double[][][] getRepresentation();
 
   // Set the representation of this hypothesis
-  abstract public void setRepresentation(doubl
+  abstract public void setRepresentation(double[][][] newRepresentation);
+
+  // Returns the fitness of thi
