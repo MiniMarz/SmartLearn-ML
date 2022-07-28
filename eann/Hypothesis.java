@@ -17,4 +17,7 @@ public abstract class Hypothesis
   abstract public void setToRandom();
 
   // Compute fitness for this Hypothesis
-  abstract publ
+  abstract public void computeFitness();
+
+  // Crossover with another Hypothesis
+  abstract public vo
