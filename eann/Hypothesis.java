@@ -14,4 +14,7 @@ public abstract class Hypothesis
   /**************** Methods **********************/
 
   // Give to this hypothesis a random representation
-  abstract publi
+  abstract public void setToRandom();
+
+  // Compute fitness for this Hypothesis
+  abstract publ
