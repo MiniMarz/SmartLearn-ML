@@ -26,4 +26,6 @@ public abstract class Hypothesis
   abstract public void mutate();
 
   // Get the representation of this hypothesis
-  abstr
+  abstract public double[][][] getRepresentation();
+
+  // Set the r
