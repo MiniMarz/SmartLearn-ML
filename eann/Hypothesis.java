@@ -28,4 +28,5 @@ public abstract class Hypothesis
   // Get the representation of this hypothesis
   abstract public double[][][] getRepresentation();
 
-  // Set the r
+  // Set the representation of this hypothesis
+  abstract public void setRepresentation(doubl
