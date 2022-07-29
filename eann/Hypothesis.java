@@ -38,4 +38,6 @@ public abstract class Hypothesis
   abstract public String toString();
 
   // Set the weights of a neuron at the specified index location on the hidden layer
-  abstract
+  abstract public void setWeights(int index, double[][] newWeights);
+
+  // R
