@@ -34,4 +34,7 @@ public abstract class Hypothesis
   // Returns the fitness of this hypothesis
   abstract public double getFitness();
 
-  // Pretty print this hy
+  // Pretty print this hypothesis
+  abstract public String toString();
+
+  // Set the weights
