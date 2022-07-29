@@ -37,4 +37,5 @@ public abstract class Hypothesis
   // Pretty print this hypothesis
   abstract public String toString();
 
-  // Set the weights
+  // Set the weights of a neuron at the specified index location on the hidden layer
+  abstract
