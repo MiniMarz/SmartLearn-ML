@@ -40,4 +40,5 @@ public abstract class Hypothesis
   // Set the weights of a neuron at the specified index location on the hidden layer
   abstract public void setWeights(int index, double[][] newWeights);
 
-  // Returns the set of weights at the specified index location of the hi
+  // Returns the set of weights at the specified index location of the hidden layer
+  abstract public double[][] getWeights(int index
