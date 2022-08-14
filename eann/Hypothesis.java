@@ -44,4 +44,6 @@ public abstract class Hypothesis
   abstract public double[][] getWeights(int index);
 
   // Returns the training accuracy of the corresponding neural net
-  abstract pub
+  abstract public double getTrainingAcc();
+
+  // Returns the numb
