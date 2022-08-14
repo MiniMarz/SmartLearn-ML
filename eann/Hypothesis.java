@@ -41,4 +41,7 @@ public abstract class Hypothesis
   abstract public void setWeights(int index, double[][] newWeights);
 
   // Returns the set of weights at the specified index location of the hidden layer
-  abstract public double[][] getWeights(int index
+  abstract public double[][] getWeights(int index);
+
+  // Returns the training accuracy of the corresponding neural net
+  abstract pub
