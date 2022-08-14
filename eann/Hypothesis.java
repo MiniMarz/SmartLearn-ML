@@ -49,4 +49,7 @@ public abstract class Hypothesis
   // Returns the number of hidden neurons
   abstract public int getNumHiddenNeurons();
 
-  // Returns the 
+  // Returns the validation accuracy
+  abstract public double getEvalAcc();
+
+}
