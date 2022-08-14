@@ -46,4 +46,7 @@ public abstract class Hypothesis
   // Returns the training accuracy of the corresponding neural net
   abstract public double getTrainingAcc();
 
-  // Returns the numb
+  // Returns the number of hidden neurons
+  abstract public int getNumHiddenNeurons();
+
+  // Returns the 
