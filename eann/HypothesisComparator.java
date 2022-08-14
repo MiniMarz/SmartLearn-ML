@@ -28,3 +28,18 @@ public class HypothesisComparator implements Comparator
         if (sizeh1>sizeh2)
         {
           return 1;
+        }
+      }
+      return 0;
+    }
+    else
+    {
+      return -1;
+    }
+  }
+
+  public boolean equals(Object o)
+  {
+    return(this.equals(o));
+  }
+}
