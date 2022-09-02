@@ -20,4 +20,5 @@ General Public License.
 other than an Application or a Combined Work as defined below.
  
   An "Application" is any work that makes use of an interface provided
-by the Library, but which is not otherwi
+by the Library, but which is not otherwise based on the Library.
+Defining a subclass of a class defined b
