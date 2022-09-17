@@ -48,4 +48,5 @@ without being bound by section 3 of the GNU GPL.
  
   If you modify a copy of the Library, and, in your modifications, a
 facility refers to a function or data to be supplied by an Application
-that uses the facility (other than as an argument passed
+that uses the facility (other than as an argument passed when the
+facility is invoked), then you may convey a copy of the modifi
