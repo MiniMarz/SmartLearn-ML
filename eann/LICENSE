@@ -62,4 +62,5 @@ version:
  
   3. Object Code Incorporating Material from Library Header Files.
  
-  The object c
+  The object code form of an Application may incorporate material from
+a header file tha
