@@ -73,4 +73,7 @@ layouts and accessors, or small macros, inline functions and templates
    Library is used in it and that the Library and its use are
    covered by this License.
  
-   b) Accompany the object code with 
+   b) Accompany the object code with a copy of the GNU GPL and this license
+   document.
+ 
+  4. Combined Works
