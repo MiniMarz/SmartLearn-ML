@@ -128,4 +128,5 @@ the following:
   5. Combined Libraries.
  
   You may place library facilities that are a work based on the
-Library s
+Library side by side in a single library together with other library
+facilities that ar
