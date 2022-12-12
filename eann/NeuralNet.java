@@ -100,3 +100,73 @@ public class NeuralNet implements Serializable
         for (int k=0;k<numInLayer[i+1];k++)
         {
           child=(Neuron) neurons.get(neuronsIndex[i+1][k]);
+          e=new Edge(parent,child,learningRate,id,momentum,mode);
+          parent.addForwardEdge(e);
+          child.addBackwardEdge(e);
+          edges.add(id,e);
+          id++;
+        }
+      }
+    }
+  }
+
+  // Call the reset function on each edge
+  // Assumes a network has been built
+  public void init()
+  {
+    for (int i=0;i<edges.size();i++)
+      ((Edge) edges.get(i)).reset();
+  }
+
+  // Set the weights of the neuron at the specified layer and index in this neural net
+  // This method is used for the genetic algorithm in the decoding process
+  public void setNeuronWeights(int layer, int index, double[][] weights)
+  {
+    Neuron neuron=((Neuron) neurons.get(neuronsIndex[layer][index]));
+    Edge edge;
+    for (int i=0;i<inputNum;i++)
+    {
+      edge=((Edge) neuron.getBackwardEdges().get(i));
+      edge.setWeight(weights[i][0]);
+    }
+    for (int i=0;i<outputNum;i++)
+    {
+      edge=((Edge) neuron.getForwardEdges().get(i));
+      edge.setWeight(weights[0][i]);
+    }
+  }
+
+  /**
+  * Print out all the weights of all the edges
+  * A useful debugging tool to see whether your neural network is indeed changing the weights
+  **/
+  public void printWeight()
+  {
+    for (int i=0;i<edges.size();i++)
+    {
+      System.out.print("Weight of edge "+i+": "+ ((Edge) edges.get(i)) .getWeight()+"  ");
+    }
+  }
+
+  /**
+  * run the network given an array of attributes from an example
+  * @param Example example contains the input attributes
+  * Step 1: Set all the input neurons [neurons in layer 0] with the attributes in this example
+  * Step 2: Calculate the value of each neuron beginning from the input layer to the output layer.
+  **/
+  private void runNetwork(Example example)
+  {
+    // Step 1
+    Neuron input;
+    double x;
+    for (int j=0;j<inputNum;j++)
+    {
+      input=(Neuron) neurons.get(neuronsIndex[0][j]);
+      x=example.getAttribute(j);
+      input.setValue(x);
+    }
+    // Step 2
+    Neuron n;
+    for (int i=1;i<layerNo;i++)
+    {
+      for (int j=0;j<neuronsIndex[i].length;j++)
