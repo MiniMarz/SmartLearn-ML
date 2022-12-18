@@ -241,3 +241,69 @@ public class NeuralNet implements Serializable
       return 1;
     else
       return 0;
+  }
+
+  /**
+  * To test the accuracy level of the entire data set
+  * @param testSet contains all the example to test for accuracy
+  * @param return the percentage of correct classification
+  **/
+  public double testDataSet(DataSet testSet)
+  {
+    Example example;
+    int label;
+    int testValue;
+    int numCorrect=0;
+    int numExamples=testSet.size();
+    for (int i=0;i<numExamples;i++)
+    {
+      example=testSet.getExample(i);
+      testValue=testSingle(example);
+      label=example.getClassLabel();
+      if (testValue==label)
+        numCorrect++;
+    }
+    return ((1.0*numCorrect)/numExamples);
+  }
+
+  // Compute the root mean squared error of this network
+  public double computeRMS(DataSet trainingSet)
+  {
+    Example example;
+    int networkOutput;
+    int targetOutput;
+    int numExamples=trainingSet.size();
+    double sum=0;
+    for (int i=0;i<numExamples;i++)
+    {
+      example=trainingSet.getExample(i);
+      networkOutput=testSingle(example);
+      targetOutput=example.getClassLabel();
+      sum=Math.pow(networkOutput-targetOutput,2) + sum;
+    }
+    return Math.sqrt(sum/numExamples);
+  }
+
+  // Report the accuracy (RMS error and training and validation accuracy after every n epoch)
+  // and write into these data
+  public void reportAccuracy(DataSet trainingSet,DataSet evaluationSet,int epoch,int n,FileWriter out) throws IOException
+  {
+    double trainingAcc=0;
+    double validationAcc=0;
+    // report RMS error
+    System.out.println("RMS : " + computeRMS(trainingSet));
+    // report training and validation accuracy after every n epochs
+    if (epoch%n==0)
+    {
+      trainingAcc=testDataSet(trainingSet);
+      System.out.println("Training Acc : " + trainingAcc);
+      validationAcc=testDataSet(evaluationSet);
+      System.out.println("Validation Acc : " + validationAcc);
+      out.write("\n"+epoch+","+validationAcc+","+trainingAcc+"\r");
+    }
+  }
+
+  /**
+  * Allow user to use the entire data set to train for specified number of iterations
+  * @param trainingSet contains all the examples to be used for training
+  * @param evaluationSet contains all the examples for validation purpose
