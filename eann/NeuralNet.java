@@ -307,3 +307,77 @@ public class NeuralNet implements Serializable
   * Allow user to use the entire data set to train for specified number of iterations
   * @param trainingSet contains all the examples to be used for training
   * @param evaluationSet contains all the examples for validation purpose
+  * @param epochNum indicates the number of iterations to train for
+  **/
+  public void iterativeTrain(DataSet trainingSet, DataSet evaluationSet, int epochNum, FileWriter out) throws IOException
+  {
+    int examplesNum=trainingSet.size();
+    Example example;
+    if (mode==STOCHASTICMODE)
+    {
+      for (int epoch=0;epoch<epochNum;epoch++)
+      {
+          for (int i=0;i<trainingSet.size();i++)
+          {
+            example=trainingSet.getExample(i);
+            trainSingle(example);
+          }
+          reportAccuracy(trainingSet,evaluationSet,epoch,20,out);
+      }
+    }
+    if (mode==BATCHMODE)
+    {
+      for (int epoch=0;epoch<epochNum;epoch++)
+      {
+        trainAll(trainingSet);
+        reportAccuracy(trainingSet,evaluationSet,epoch,20,out);
+      }
+    }
+  }
+
+  /**
+  * Perform back propagation : gradient descent search to learn the weights of the network
+  * Stochastic gradient descent
+  * @param example contains all the class label for this example
+  **/
+  public void backPropagation(Example example)
+  {
+    Neuron output;
+    Neuron n;
+    Edge e;
+    double targetVal;
+    double errorTerm;
+    // from output-to-hidden units
+    targetVal=example.getClassLabel();
+    for (int j=0;j<outputNum;j++)
+    {
+      output=(Neuron) neurons.get(neuronsIndex[layerNo-1][j]);
+      output.backErrorTrack(targetVal);
+      errorTerm=output.getErrorTerm();
+      for (int k=0;k<output.getParentNum();k++)
+      {
+        e=(Edge) (output.getBackwardEdges()).get(k);
+        e.updateDeltaWeight(errorTerm);
+      }
+    }
+    // from hidden-to-hidden units till hidden-to-input units
+    for (int i=layerNo-2; i>0; i--)
+    {
+      for (int j=0;j<neuronsIndex[i].length;j++)
+      {
+        n=(Neuron) neurons.elementAt(neuronsIndex[i][j]);
+        n.backErrorTrack();
+        errorTerm=n.getErrorTerm();
+        for (int k=0;k<n.getParentNum();k++)
+        {
+          e=(Edge) (n.getBackwardEdges()).get(k);
+          e.updateDeltaWeight(errorTerm);
+        }
+      }
+    }
+  }
+
+  /**
+    * Save NeuralNetwork to file
+   **/
+  public void save(String filename)
