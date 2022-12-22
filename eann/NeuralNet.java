@@ -381,3 +381,62 @@ public class NeuralNet implements Serializable
     * Save NeuralNetwork to file
    **/
   public void save(String filename)
+  {
+    //  Create a file dialog to query the user for a filename.
+    try {
+      // Create the necessary output streams to midistruct.
+      FileOutputStream fos = new FileOutputStream(filename);
+      GZIPOutputStream gzos = new GZIPOutputStream(fos);
+      ObjectOutputStream out = new ObjectOutputStream(gzos);
+      out.writeObject(this);
+      out.flush();
+      out.close();
+    }
+    catch (IOException e)
+    {
+      System.out.println(e);
+    }
+  }
+
+  /**
+    * Load NeuralNetwork from file
+   **/
+  public static NeuralNet load(String filename)
+  {
+    NeuralNet x;
+    try {
+      // Create necessary input streams
+      FileInputStream fis = new FileInputStream(filename);
+      GZIPInputStream gzis = new GZIPInputStream(fis);
+      ObjectInputStream in = new ObjectInputStream(gzis);
+      x = (NeuralNet)in.readObject();
+      in.close();                    // Close the stream.
+      return x;
+    }
+    catch (Exception e)
+    {
+      System.out.println(e);
+    }
+    return null;
+  }
+
+
+  public Vector getNeurons()
+  {
+    return neurons;
+  }
+
+  public Vector getEdges()
+  {
+    return edges;
+  }
+
+  /** Start off point of this program **/
+  public static void main(String args[]) throws IOException
+  {
+    if (args.length!=3)
+    {
+      System.out.println("Wrong usage. Type java NeuralNet [trainingFile] [evaluationFile] [mode]");
+    }
+    else
+    {
