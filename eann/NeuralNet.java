@@ -440,3 +440,62 @@ public class NeuralNet implements Serializable
     }
     else
     {
+      // read in the datasets
+      DataSet trainingData = new DataSet(args[0]);
+      DataSet evaluationData = new DataSet(args[1]);
+      int mode = Integer.parseInt(args[2]);
+
+      // decide network topology
+      int layers[] = new int[3];
+      layers[0] = trainingData.getAttributeNum();
+      layers[1] = 9;
+      layers[2] = 1;
+      //layers[3] = 7;
+      //layers[4] = 3;
+      //layers[5] = 1;
+
+      // choose the learning rate and momentum parameters
+      double learningRate=0.1;    // for batchmode take learning rate less than 0.05
+      double momentum=0.01;       // for batchmode take momentum less than 0.001
+
+      // create a network
+      NeuralNet myNetwork = new NeuralNet(layers.length,layers, learningRate, momentum, mode);
+      // initial the weights
+      myNetwork.init();
+      System.out.println("MLP Neural Network Created");
+
+      // report parameters to user and write into files for graphs...
+      File outputFile=new File("testANN.txt");
+      FileWriter out=new FileWriter(outputFile);
+      for (int i=0;i<layers.length;i++)
+      {
+        System.out.println("Layer "+i+" has "+layers[i]+" elements");
+        out.write("\nLayer "+i+" has "+layers[i]+" elements\r");
+      }
+      System.out.println("Total number of neurons: " + myNetwork.getNeurons().size());
+      out.write("\nTotal number of neurons: " + myNetwork.getNeurons().size()+"\r");
+      System.out.println("Total number of edges: " + myNetwork.getEdges().size());
+      out.write("\nTotal number of edges: " + myNetwork.getEdges().size()+"\r");
+      if (mode==BATCHMODE)
+      {
+        System.out.println("Batchmode selected");
+        out.write("\nBatchmode selected \r");
+      }
+      else
+      {
+        System.out.println("Stochastic selected");
+        out.write("\nStochastic selected\r");
+      }
+      System.out.println("Learning Rate is "+learningRate);
+      out.write("\nLearning Rate is "+learningRate+"\r");
+      System.out.println("Momentum is "+momentum);
+      out.write("\nMomentum is "+momentum+"\r");
+
+      // training the network....
+      myNetwork.iterativeTrain(trainingData, evaluationData,69,out);
+      myNetwork.reportAccuracy(trainingData,evaluationData,1,1,out);
+      //myNetwork.save("myANN.dat");
+      out.close();
+    }
+  }
+}
