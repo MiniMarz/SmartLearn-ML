@@ -11,4 +11,5 @@ public class NeuralTest {
     }
     else
     {
-     
+      DataSet mysteryDataSet=new DataSet(args[0]);
+      NeuralNe
