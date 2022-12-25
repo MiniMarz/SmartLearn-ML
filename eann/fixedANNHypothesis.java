@@ -46,3 +46,80 @@ public class fixedANNHypothesis extends Hypothesis
   // Every weight is initialized to a random value between -1 and 1
   public void setToRandom()
   {
+    double[][] weights;
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      weights=getWeights(index);
+      for(int i=0;i<numInputNeurons;i++)
+      {
+        weights[i][0]=Math.random()*2 - 1;
+      }
+      for (int i=0;i<numOutputNeurons;i++)
+      {
+        weights[0][i]=Math.random()*2 - 1;
+      }
+    }
+  }
+
+  // Compute fitness for this Hypothesis
+  // The fitness is the RMS of this hypothesis
+  public void computeFitness()
+  {
+    double[][] newWeights;
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      newWeights=getWeights(index);
+      neuralNet.setNeuronWeights(1,index,newWeights);
+    }
+    fitness=neuralNet.computeRMS(trainingSet);
+    trainingAcc=neuralNet.testDataSet(trainingSet);        // don't need to compute twice (will be removed)
+    evalAcc=neuralNet.testDataSet(evaluationSet);
+  }
+
+  // Crossover with another Hypothesis
+  // Apply a uniform crossover
+  public void crossover(Hypothesis otherParent)
+  {
+    double newWeights[][];
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      if (Math.random()>0.5)
+      {
+        newWeights=otherParent.getWeights(index);
+        setWeights(index,newWeights);
+      }
+    }
+  }
+
+  // Mutate this Hypothesis
+  // Add a number distributed normally between -1 and 1
+  public void mutate()
+  {
+    Random value=new Random();
+    double oldWeight;
+    double weights[][];
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      weights=getWeights(index);
+      for(int i=0;i<numInputNeurons;i++)
+      {
+        oldWeight=weights[i][0];
+        weights[i][0]=oldWeight + value.nextGaussian();     // check this
+      }
+      for (int i=0;i<numOutputNeurons;i++)
+      {
+        oldWeight=weights[0][i];
+        weights[0][i]=oldWeight + value.nextGaussian();     // check this
+      }
+    }
+  }
+
+  // Returns the representation of this hypothesis
+  public double[][][] getRepresentation()
+  {
+    return representation;
+  }
+
+  // Sets the representation of this hypothesis to a new representation
+  public void setRepresentation(double[][][] newRepresentation)
+  {
