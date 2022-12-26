@@ -123,3 +123,68 @@ public class fixedANNHypothesis extends Hypothesis
   // Sets the representation of this hypothesis to a new representation
   public void setRepresentation(double[][][] newRepresentation)
   {
+    double[][] newWeights;
+    double[][] weights;
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      newWeights=newRepresentation[index];
+      weights=getWeights(index);
+      for(int i=0;i<numInputNeurons;i++)
+      {
+        weights[i][0]=newWeights[i][0];
+      }
+      for (int i=0;i<numOutputNeurons;i++)
+      {
+        weights[0][i]=newWeights[0][i];
+      }
+    }
+  }
+
+  // Returns the fitness of this hypothesis
+  public double getFitness()
+  {
+    return fitness;
+  }
+
+  // Pretty print this hypothesis
+  public String toString()
+  {
+    return "" + numHiddenNeurons + " Hidden Neurons";
+  }
+
+  // Set the weights of a neuron at the specified index location on the hidden layer
+  public void setWeights(int index, double[][] newWeights)
+  {
+    double[][] weights=getWeights(index);
+    for (int i=0;i<numInputNeurons;i++)
+    {
+      weights[i][0]=newWeights[i][0];
+    }
+    for (int i=0;i<numOutputNeurons;i++)
+    {
+      weights[0][i]=newWeights[0][i];
+    }
+  }
+
+  // Returns the set of weights at the specified index location of the hidden layer
+  public double[][] getWeights(int index)
+  {
+    return representation[index];
+  }
+
+  // will be removed
+  public double getTrainingAcc()
+  {
+    return trainingAcc;
+  }
+
+  public int getNumHiddenNeurons()
+  {
+    return numHiddenNeurons;
+  }
+
+  public double getEvalAcc()
+  {
+    return evalAcc;
+  }
+}
