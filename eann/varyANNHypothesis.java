@@ -75,3 +75,72 @@ public class varyANNHypothesis extends Hypothesis
   // Compute fitness for this Hypothesis
   // The fitness represents 3 digits of the RMS of this hypothesis
   // So that we can keep the number of hidden neurons small by promoting smaller hypotheses
+  public void computeFitness()
+  {
+    double[][] newWeights;
+    // We need to create a new neural net (this is the computationly expensive part
+    // of the algorithm and I think there is not really a way around this)
+    int[] numInLayer=new int[3];
+    numInLayer[0]=numInputNeurons;
+    numInLayer[1]=numHiddenNeurons;
+    numInLayer[2]=numOutputNeurons;
+    NeuralNet neuralNetEvaluator=new NeuralNet(3,numInLayer,0,0,1);
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      newWeights=getWeights(index);
+      neuralNetEvaluator.setNeuronWeights(1,index,newWeights);
+    }
+    fitness=neuralNetEvaluator.computeRMS(trainingSet);
+    fitness=Math.floor(fitness*1000);
+    fitness=fitness/1000;
+
+    trainingAcc=neuralNetEvaluator.testDataSet(trainingSet);       // don't need to compute twice (will be removed)
+    evalAcc=neuralNetEvaluator.computeRMS(trainingSet);
+  }
+
+  // Crossover with another Hypothesis
+  public void crossover(Hypothesis otherParent)
+  {
+    Random value=new Random();
+    double newWeights[][];
+    int numNeuronsOtherParent=((varyANNHypothesis) (otherParent)).getNumHiddenNeurons();
+    // We keep the part between 0 and split1 included of this hypothesis
+    int split1=value.nextInt(numHiddenNeurons);
+    // We keep the part between split2 included and otherParent.numHiddenNeurons-1
+    int split2=value.nextInt(numNeuronsOtherParent);
+    //int split1=numHiddenNeurons/2;              // test with a standard crossover
+    //int split2=numNeuronsOtherParent/2;
+    // Save the weights of this hypothesis
+    varyANNHypothesis savedHypothesis=new varyANNHypothesis(numHiddenNeurons);
+    savedHypothesis.setRepresentation(this.getRepresentation());
+    // Reset the size of this hypothesis
+    setNumHiddenNeurons(split1 + 1 + numNeuronsOtherParent - split2);
+    // Merge the two parts together
+    int index;
+    for (index=0;index<split1+1;index++)
+    {
+      setWeights(index,savedHypothesis.getWeights(index));
+    }
+    for (int otherParentIndex=split2;otherParentIndex<numNeuronsOtherParent;otherParentIndex++)
+    {
+      newWeights=otherParent.getWeights(otherParentIndex);
+      setWeights(index,newWeights);
+      index++;
+    }
+  }
+
+  // Mutate this Hypothesis
+  // Add a number distributed normally between -1 and 1
+  public void mutate()
+  {
+    Random value=new Random();
+    double oldWeight;
+    double weights[][];
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      weights=getWeights(index);
+      for(int i=0;i<numInputNeurons;i++)
+      {
+        oldWeight=weights[i][0];
+        weights[i][0]=oldWeight + value.nextGaussian();     // check this
+      }
