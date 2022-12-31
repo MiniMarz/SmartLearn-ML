@@ -211,3 +211,38 @@ public class varyANNHypothesis extends Hypothesis
   {
     return representation[index];
   }
+
+  public int getNumHiddenNeurons()
+  {
+    return numHiddenNeurons;
+  }
+
+  // Reset the size of the representation
+  // All data in the representation array will be lost
+  public void setNumHiddenNeurons(int numHiddenNeurons)
+  {
+    // only need to init if the size is different
+    //if (this.numHiddenNeurons!=numHiddenNeurons)
+    {
+      this.numHiddenNeurons=numHiddenNeurons;
+      // and we need to reinitialize the representation
+      representation=new double[numHiddenNeurons][][];
+      for (int i=0;i<numHiddenNeurons;i++)
+      {
+        representation[i]=new double[numInputNeurons][numOutputNeurons];
+      }
+    }
+  }
+
+  // will be removed
+  public double getTrainingAcc()
+  {
+    return trainingAcc;
+  }
+
+  public double getEvalAcc()
+  {
+    return evalAcc;
+  }
+
+}
