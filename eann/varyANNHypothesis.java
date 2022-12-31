@@ -144,3 +144,70 @@ public class varyANNHypothesis extends Hypothesis
         oldWeight=weights[i][0];
         weights[i][0]=oldWeight + value.nextGaussian();     // check this
       }
+      for (int i=0;i<numOutputNeurons;i++)
+      {
+        oldWeight=weights[0][i];
+        weights[0][i]=oldWeight + value.nextGaussian();     // check this
+      }
+    }
+  }
+
+  // Returns the representation of this hypothesis
+  public double[][][] getRepresentation()
+  {
+    return representation;
+  }
+
+  // Sets the representation of this hypothesis to a new representation
+  public void setRepresentation(double[][][] newRepresentation)
+  {
+    // First we need to reset the size of the representation to the new representation
+    setNumHiddenNeurons(newRepresentation.length);
+    double[][] newWeights;
+    double[][] weights;
+    for (int index=0;index<numHiddenNeurons;index++)
+    {
+      newWeights=newRepresentation[index];
+      weights=getWeights(index);
+      for(int i=0;i<numInputNeurons;i++)
+      {
+        weights[i][0]=newWeights[i][0];
+      }
+      for (int i=0;i<numOutputNeurons;i++)
+      {
+        weights[0][i]=newWeights[0][i];
+      }
+    }
+  }
+
+  // Returns the fitness of this hypothesis
+  public double getFitness()
+  {
+    return fitness;
+  }
+
+  // Pretty print this hypothesis
+  public String toString()
+  {
+    return "" + numHiddenNeurons + " Hidden Neurons";
+  }
+
+  // Set the weights of a neuron at the specified index location on the hidden layer
+  public void setWeights(int index, double[][] newWeights)
+  {
+    double[][] weights=getWeights(index);
+    for (int i=0;i<numInputNeurons;i++)
+    {
+      weights[i][0]=newWeights[i][0];
+    }
+    for (int i=0;i<numOutputNeurons;i++)
+    {
+      weights[0][i]=newWeights[0][i];
+    }
+  }
+
+  // Returns the set of weights at the specified index location of the hidden layer
+  public double[][] getWeights(int index)
+  {
+    return representation[index];
+  }
