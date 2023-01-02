@@ -1,4 +1,7 @@
 
 import java.util.*;
 
-public cla
+public class HypothesisComparator implements Comparator
+{
+
+  public HypothesisCompar
