@@ -18,4 +18,9 @@ public class HypothesisComparator implements Comparator
     else if (fitness1==fitness2)
       return 0;
     else
-      return
+      return -1;
+  }
+
+  public boolean equals(Object o)
+  {
+    return(this.equal
