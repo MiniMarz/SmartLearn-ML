@@ -23,4 +23,6 @@ public class HypothesisComparator implements Comparator
 
   public boolean equals(Object o)
   {
-    return(this.equal
+    return(this.equals(o));
+  }
+}
