@@ -14,4 +14,8 @@ public class HypothesisComparator implements Comparator
     int fitness1=h1.getFitness();
     int fitness2=h2.getFitness();
     if (fitness1>fitness2)
-  
+      return 1;
+    else if (fitness1==fitness2)
+      return 0;
+    else
+      return
