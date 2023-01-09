@@ -187,3 +187,79 @@ public class PatternFinder
     }
     return false;
   }
+
+  /**
+   * Calculate the pattern description probabilities and the background probabilities
+   * of the model (set of patterns).
+   * Uses speudo-count to avoid undersampling issues, the prior probabilities are chosen
+   * to be 1/(number of letters in the alphabet).
+   *
+   * @param Z the sequence to be excluded, use -1 if no sequence to exclude.
+  **/
+  private void calculateModel(int Z)
+  {
+    // compute the pattern description q[i][j]
+    int[] n=new int[L];       // number of symbols j at position i
+
+    for (int j=0; j<symbol.length; j++)
+    {
+      for (int i=0; i<L; i++)
+      {
+        for (int k=0; k<N; k++)
+        {
+          if (k!=Z && getPattern(k,a[k]).charAt(i)==symbol[j])
+            n[i]++;
+        }
+        q[i][j]=(n[i]+m*1.0/numSymbols)/(N-1+m);
+      }
+      Arrays.fill(n,0);
+    }
+
+    // compute the backgroung propababilities p[j]
+    n=new int[numSymbols];        // number of symbols j
+    for (int j=0; j<symbol.length; j++)
+    {
+      for (int k=0; k<N; k++)
+      {
+        if (k!=Z)
+        {
+          for (int i=0; i<sequence[k].length(); i++)
+          {
+            if ( !(i>=a[k] && i<=a[k]+L) && sequence[k].charAt(i)==symbol[j])
+              n[j]++;
+          }
+        }
+      }
+      p[j]=(n[j]+m*1.0/numSymbols)/(totalLength-((N-1)*L+1)+m);
+    }
+  }
+
+  /**
+   * Calculate the probability of a segment according to the model and to the
+   * background probabilities.
+   * Chosing such a likelihood ratio gives more weight to symbols that appear
+   * less in the background and less weight to symbols that we find all over the
+   * background (reduces the probability to have gotten these symbols by chance).
+   *
+   * @param k The sequence where the segment is located.
+   * @param spos The starting position of the pattern.
+   *
+   * @return The weight given to this segment.
+  **/
+  private double computeWeight(int k, int spos)
+  {
+    String segment=getPattern(k,spos);
+    int symbolNo;
+    double Q=1,P=1;
+    for (int i=0; i<segment.length(); i++)
+    {
+      symbolNo=Arrays.binarySearch(symbol,segment.charAt(i));
+      Q*=q[i][symbolNo];
+      P*=p[symbolNo];
+    }
+    // avoids machine precision problem (may not be necessary)
+    if (P<=eps)
+      return Q/eps;
+
+    return Q/P;
+  }
