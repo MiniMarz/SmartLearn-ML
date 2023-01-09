@@ -263,3 +263,78 @@ public class PatternFinder
 
     return Q/P;
   }
+
+  /**
+   * Select a segment at random considering an array of weights of each segment.
+   *
+   * @param weight Array of weights, weight[i] is the weight of segment i.
+   *
+   * @return The index of the chosen segment.
+  **/
+  private int select(double[] weight)
+  {
+    double sum=0;
+    for (int i=0; i<weight.length; i++)
+      sum+=weight[i];
+    for (int i=0; i<weight.length; i++)
+      weight[i]=weight[i]/sum;
+    double flip=Math.random();
+    if (flip>=0 && flip<=weight[0])
+      return 0;
+    else
+    {
+      int i;
+      for (i=1; i<weight.length; i++)
+      {
+        if (flip>=weight[i-1] && flip<=weight[i])
+          break;
+      }
+      return i;
+    }
+  }
+
+  /**
+   * Compute the likelihood of the current set of patterns.
+   *
+   * @return The likelihood the model.
+  **/
+  public double computeLikelihood()
+  {
+    calculateModel(-1);
+    double likelihood=0;
+    for (int k=0; k<N; k++)
+    {
+      likelihood+=Math.log(computeWeight(k,a[k]));
+    }
+    return likelihood;
+  }
+
+  /**
+   * Print the best model seen so far.
+  **/
+  private void report(int iteration)
+  {
+    System.out.println("Iteration: "+iteration);
+    for (int k=0; k<N; k++)
+    {
+      System.out.println("sequence "+k+" position "+besta[k]+" "+getPattern(k,besta[k]));
+    }
+    System.out.println("likelihood ratio: "+bestLikelihood);
+    System.out.println();
+  }
+
+  /**
+   * Scan the sequences around the patterns of the best model, considering all
+   * possible model shifts.
+   * Model refinement gives substantial improvement as the program might get
+   * trapped in a shifted model.
+  **/
+  private void refine()
+  {
+    int[] lShift=new int[N];
+    int[] rShift=new int[N];
+    // copy starting points of the patterns
+    for (int k=0; k<N; k++)
+    {
+      lShift[k]=a[k];
+      rShift[k]=a[k];
