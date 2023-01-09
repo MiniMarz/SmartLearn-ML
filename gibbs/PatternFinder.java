@@ -113,3 +113,77 @@ public class PatternFinder
     double [] A;
     while(!converged() && iteration<=NUM_ITER)
     {
+      // Predictive step
+      // choose at random one the sequences (Z)
+      Z=(int) (Math.random()*N);
+      // calculate the model from the current position in all sequences except Z
+      calculateModel(Z);
+
+      // Sampling step
+      // calculate the probability of every possible segment in the sequence Z
+      int numSegments=sequence[Z].length()-L;
+      A=new double[numSegments];
+      for (int i=0; i<numSegments; i++)
+        A[i]=computeWeight(Z,i);
+      // select a segment at random considering these weights (A)
+      // its position becomes the new position a[Z]
+      a[Z]=select(A);
+
+      // Compute the likelihood ratio of the patterns
+      updateBestModel();
+
+      // Report the best set of patterns
+      report(iteration);
+      iteration++;
+    }
+
+    // Model refinement
+    if (mode==1)
+    {
+      refine();
+      System.out.println("After Model Refinement: ");
+      report(iteration-1);
+    }
+  }
+
+  /**
+   * Initialize the algorithm by selecting random starting points for the
+   * pattern in each sequence and other natural init.
+  **/
+  private void init()
+  {
+    noUpdate=0;
+    // chose random starting point of the pattern.
+    for (int k=0; k<N; k++)
+    {
+      a[k]=(int) (Math.random()*(sequence[k].length()-L+1));
+      besta[k]=a[k];
+    }
+    // initialize model and background probabilities.
+    for (int i=0; i<L; i++)
+      for (int j=0; j<numSymbols; j++)
+        q[i][j]=1.0/numSymbols;
+    for (int j=0; j<numSymbols; j++)
+      p[j]=1.0/numSymbols;
+    // initialize the best likelihood found so far.
+    calculateModel(-1);
+    bestLikelihood=computeLikelihood();
+  }
+
+  /**
+   * The algorithm has converged if the best set of patterns hasn't changed for
+   * a specified number of iterations.
+   * Note that the last model isn't necessarly the best model since this randomized
+   * algorithm will get out of local minima by having to backtrack.
+   *
+   * @return true if the algorithm has converged, 0 otherwise.
+  **/
+  private boolean converged()
+  {
+    if (noUpdate==MAX_NO_UPDATE)
+    {
+      noUpdate=0;
+      return true;
+    }
+    return false;
+  }
