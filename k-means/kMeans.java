@@ -70,3 +70,65 @@ public class kMeans
     {
       // remember old values of the each mean
       for (int j=0;j<k;j++)
+      {
+        oldMeans[j]=new PointND(mu[j]);
+      }
+      // classify each instance x[i] to its nearest class
+      // first we need to clear the class array since we are reclassifying
+      for (int j=0;j<k;j++)
+      {
+        w[j]=new Vector();        // could use clear but then have to init...
+      }
+
+      for (int i=0;i<n;i++)
+      {
+        classify(x[i]);
+      }
+      // recompute each mean
+      computeMeans();
+      // compute the largest change in mu[j]
+      maxDeltaMeans=maxDeltaMeans(oldMeans);
+      numIterations++;
+    }
+    // now we find the quality of the model
+    modelQuality(x);
+  }
+
+  /**
+   * Find the quality of the model
+  **/
+  private void modelQuality(PointND[] x)
+  {
+    // compute the standard deviation of each cluster
+    computeDeviation();
+    // compute the prior of each cluster
+    computePriors();
+    // compute the log likelihood of each cluster
+    computeLogLikelihood(x);
+    // find the minimum description length of the model
+    computeMDL();
+  }
+
+
+  /**
+   * Classifies the point x to the nearest class
+  **/
+  private void classify(PointND x)
+  {
+    double dist=0;
+    double smallestDist;
+    int nearestClass;
+
+    // compute the distance x is from mean mu[0]
+    smallestDist=x.dist(mu[0]);
+    nearestClass=0;
+
+    // compute the distance x is from the other classes
+    for(int j=1;j<k;j++)
+    {
+      dist=x.dist(mu[j]);
+      if (dist<smallestDist)
+      {
+        smallestDist=dist;
+        nearestClass=j;
+      }
