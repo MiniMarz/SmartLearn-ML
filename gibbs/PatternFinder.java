@@ -338,3 +338,78 @@ public class PatternFinder
     {
       lShift[k]=a[k];
       rShift[k]=a[k];
+    }
+    boolean lShiftPossible=true, rShiftPossible=true;
+    for (int shift=1; shift<L; shift++)
+    {
+      // check if a left/right shift is possible
+      for (int k=0; k<N; k++)
+      {
+        if (lShift[k]-1<0)
+          lShiftPossible=false;
+        if (rShift[k]+L+1>sequence[k].length()-1)
+          rShiftPossible=false;
+      }
+      // shift left the patterns if possible
+      if (lShiftPossible)
+      {
+        for (int k=0; k<N; k++)
+        {
+          lShift[k]--;
+        }
+        a=lShift;
+        updateBestModel();
+      }
+      // shift right the patterns if possible
+      if (rShiftPossible)
+      {
+        for (int k=0; k<N; k++)
+        {
+          rShift[k]++;
+        }
+        a=rShift;
+        updateBestModel();
+      }
+    }
+  }
+
+  /**
+   * Compute the likelihood of the current model and update the best model found
+   * so far.
+  **/
+  private void updateBestModel()
+  {
+    double likelihood=computeLikelihood();
+    if (likelihood>bestLikelihood)
+    {
+      bestLikelihood=likelihood;
+      for (int k=0; k<N; k++)
+        besta[k]=a[k];
+      noUpdate=0;
+    }
+    else
+    {
+      noUpdate++;
+    }
+  }
+
+  /**
+   * Run the algoritm multiple times, each time staring with a different random
+   * seed.  Output the best model overall.
+   *
+   * @param mode 1 for model refinement.
+   * @param maxEpochs maximum number of trials.
+  **/
+  private void search(int mode, int maxEpochs)
+  {
+    int[] veryBesta=new int[N];
+    double veryBestLikelihood=0;
+    for (int epoch=0; epoch<maxEpochs; epoch++)
+    {
+      System.out.println("Epoch no: "+epoch);
+      System.out.println();
+      run(mode);
+      if (bestLikelihood>veryBestLikelihood)
+      {
+        veryBestLikelihood=bestLikelihood;
+        for (int k=0; k<N; k++)
