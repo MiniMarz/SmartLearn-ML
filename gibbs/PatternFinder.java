@@ -413,3 +413,68 @@ public class PatternFinder
       {
         veryBestLikelihood=bestLikelihood;
         for (int k=0; k<N; k++)
+        {
+          veryBesta[k]=besta[k];
+        }
+      }
+    }
+    bestLikelihood=veryBestLikelihood;
+    besta=veryBesta;
+    System.out.println("Best Model Overall:");
+    System.out.println();
+    report(-1);
+  }
+
+  /**
+   * Get the pattern at a chosen staring point for a chosen sequence.
+   *
+   * @param k The sequence number.
+   * @param spos The starting position of the pattern.
+   *
+   * @return The pattern.
+  **/
+  private String getPattern(int k, int spos)
+  {
+    return sequence[k].substring(spos,spos+L);
+  }
+
+  /**
+   * Main entrance in this porgram.
+  **/
+  public static void main(String[] args)
+  {
+    if (args.length==0)
+    {
+      System.out.println("=============================================================================");
+      System.out.println("Pattern Finder V1.0");
+      System.out.println("coded by Alex Ksikes, ak107@cs.cornell.edu");
+      System.out.println("=============================================================================");
+      System.out.println("Application of the Gibbs sampling algorithm technique.");
+      System.out.println();
+      System.out.println("Detecting motifs in multiple sequences:\n"+
+                         "we are given a set of N sequence and we seek a mutually\n"+
+                         "similar segments of specified length L in each sequences.");
+      System.out.println("=============================================================================");
+      System.out.println("Type java -jar pattern_finder.jar [datafile] [L] [search_mode] [refine_mode]");
+      System.out.println();
+      System.out.println("  [datafile]   : name of the file containing the patterns.");
+      System.out.println("  [L]           : length of the pattern");
+      System.out.println("  [search_mode] : if 1 then search mode");
+      System.out.println("  [refine_mode] : if 1 then refine mode");
+      System.exit(0);
+    }
+
+    // read in arguments
+    String dataFile=args[0];
+    int L=Integer.parseInt(args[1]);
+    int search=Integer.parseInt(args[2]);
+    int mode=Integer.parseInt(args[3]);
+
+    // run the algorithm
+    PatternFinder patternFinder=new PatternFinder(dataFile,L,0);
+    if (search==0)
+      patternFinder.run(mode);
+    else if (search==1)
+      patternFinder.search(mode,MAX_EPOCH);
+  }
+}
