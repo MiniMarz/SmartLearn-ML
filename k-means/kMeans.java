@@ -132,3 +132,77 @@ public class kMeans
         smallestDist=dist;
         nearestClass=j;
       }
+    }
+    // classify x into class its nearest class
+    w[nearestClass].add(x);
+  }
+
+  /**
+   * Recompute mu[j] as the average of all points classified to the class w[j]
+  **/
+  private void computeMeans()
+  {
+    int numInstances;               // number of instances in each class w[j]
+    PointND instance;
+
+    // init the means to zero
+    for (int j=0;j<k;j++)
+      mu[j].setToOrigin();
+
+    // recompute the means of each cluster
+    for (int j=0;j<k;j++)
+    {
+      numInstances=w[j].size();
+      for (int i=0;i<numInstances;i++)
+      {
+        instance=(PointND) (w[j].get(i));
+        mu[j].add(instance);
+      }
+      mu[j].multiply(1.0/numInstances);
+    }
+  }
+
+  /**
+   * Compute the maximum change over each mean mu[j]
+  **/
+  private double maxDeltaMeans(PointND[] oldMeans)
+  {
+    double delta;
+    oldMeans[0].subtract(mu[0]);
+    double maxDelta=oldMeans[0].max();
+    for (int j=1;j<k;j++)
+    {
+      oldMeans[j].subtract(mu[j]);
+      delta=oldMeans[j].max();
+      if (delta > maxDelta)
+        maxDelta=delta;
+    }
+    return maxDelta;
+  }
+
+  /**
+   * Report the results
+   * Assumes the algorithm was run
+  **/
+  public void printResults()
+  {
+    System.out.println("********************************************");
+    System.out.println("Trying " + k + " clusters...");
+    System.out.println("Converged after " + numIterations + " iterations");
+    for (int j=0;j<k;j++)
+    {
+      System.out.println();
+      System.out.println("Gaussian no. " + (j+1));
+      System.out.println("---------------");
+      System.out.println("mean " + mu[j]);
+      System.out.println("sigma " + sigma[j]);
+      System.out.println("prior " + prior[j]);
+    }
+    System.out.println();
+    System.out.println("Model quality:");
+    System.out.println("Log-Likelihood " + logLikelihood);
+    System.out.println("MdL " + MDL);
+  }
+
+  /**
+   * Write into a file the k Gaussians (one for each column)
