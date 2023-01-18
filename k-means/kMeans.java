@@ -206,3 +206,64 @@ public class kMeans
 
   /**
    * Write into a file the k Gaussians (one for each column)
+   * Only works for 2 dimensional points
+  **/
+  public void writeFile(FileWriter out) throws IOException
+  {
+    //save the MDL of this model
+    out.write(MDL + "\r");
+    for (int j=0;j<k;j++)
+    {
+      out.write("Gaussian" + (j+1) + " ");
+    }
+    out.write("\r");
+    // save the means of each Gaussian
+    for (int j=0;j<k;j++)
+    {
+      out.write(mu[j] + " ");
+    }
+    out.write("\r");
+    // save the points in each Gaussian for each column
+    int numInstances=0;
+    for (int i=0;i<n;i++)
+    {
+      for (int j=0;j<k;j++)
+      {
+        numInstances=w[j].size();
+        if (i<numInstances)
+          out.write(w[j].get(i) + " ");
+        else
+          out.write("" + " " + "" + " ");
+      }
+      out.write("\r");
+    }
+  }
+
+  /**
+   * Compute the standard deviation of the k Gaussians
+  **/
+  private void computeDeviation()
+  {
+    int numInstances;               // number of instances in each class w[j]
+    PointND instance;
+    PointND temp;
+
+    // set the standard deviation to zero
+    for (int j=0;j<k;j++)
+      sigma[j].setToOrigin();
+
+    // for each cluster j...
+    for (int j=0;j<k;j++)
+    {
+      numInstances=w[j].size();
+      for (int i=0;i<numInstances;i++)
+      {
+        instance=(PointND) (w[j].get(i));
+        temp=new PointND(instance);
+        temp.subtract(mu[j]);
+        temp.pow(2.0);                        // (x[i]-mu[j])^2
+        temp.multiply(1.0/numInstances);      // multiply by proba of having x[i] in cluster j
+        sigma[j].add(temp);                   // sum i (x[i]-mu[j])^2 * p(x[i])
+      }
+      sigma[j].pow(1.0/2);                    // because we want the standard deviation
+    }
