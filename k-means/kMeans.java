@@ -267,3 +267,61 @@ public class kMeans
       }
       sigma[j].pow(1.0/2);                    // because we want the standard deviation
     }
+  }
+
+  /**
+   * Compute the priors of the k Gaussians
+  **/
+  private void computePriors()
+  {
+    double numInstances;               // number of instances in each class w[j]
+    for (int j=0;j<k;j++)
+    {
+      numInstances=w[j].size()*(1.0);
+      prior[j]=numInstances/n;
+    }
+  }
+
+  /**
+   * Assume the standard deviations and priors of each cluster have been computed
+  **/
+  private void computeLogLikelihood(PointND[] x)
+  {
+    double temp1=0;
+    double temp2=0;
+    PointND variance;
+    double ln2=Math.log(2);
+    // for each instance x
+    for (int i=0;i<n;i++)
+    {
+      // for each cluster j
+      temp1=0;
+      for (int j=0;j<k;j++)
+      {
+        temp1=temp1 + ( x[i].normal(mu[j],sigma[j]) *  prior[j] );
+      }
+      temp2=temp2 + Math.log(temp1)/ln2;
+    }
+    logLikelihood=temp2;
+  }
+
+  /**
+   * Assume the log likelihood and priors have been computed
+  **/
+  private void computeMDL()
+  {
+    double temp=0;
+    double numInstances;
+    double ln2=Math.log(2);
+    for (int j=0;j<k;j++)
+    {
+      numInstances=w[j].size();
+      for (int i=0;i<d;i++)
+      {
+        temp=temp - Math.log( sigma[j].getCoordinate(i)/Math.sqrt(numInstances) )/ln2;
+      }
+    }
+    MDL=temp - logLikelihood;
+  }
+
+  public double getMDL()
