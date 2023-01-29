@@ -325,3 +325,68 @@ public class kMeans
   }
 
   public double getMDL()
+  {
+    return MDL;
+  }
+
+  /**
+   * Takes the data filename of instances to classify into a number of cluster k
+   * Runs the k-means algorithm with 1 to maxk clusters
+  **/
+  public static void main(String[] args) throws IOException
+  {
+    if (args.length!=2)
+    {
+      System.out.println("Wrong usage. Type java kMeans [data file] [maximum number of clusters]");
+      System.out.println("Make sure the data file contains the number of instances and the number of attributes");
+    }
+    else
+    {
+      // read in the arguments
+      // the data file must have as its first line the number of instances and for
+      // each instance the number of attributes (see data.txt)
+      DataSet dataFile = new DataSet(args[0]);
+      int maxk = Integer.parseInt(args[1]);
+
+      // make the instance array
+      int numInstances=dataFile.size();
+      int d=dataFile.getAttributeNum();
+      PointND[] x=new PointND[numInstances];
+      Example instance;
+      for (int i=0;i<numInstances;i++)
+      {
+        instance=dataFile.getExample(i);
+        x[i]=new PointND(d);
+        for (int k=0;k<d;k++)
+        {
+          x[i].setCoordinate(k,instance.getAttribute(k));
+        }
+      }
+
+      // used to write into files
+      File outputFile=new File("testClustering.txt");
+      FileWriter out=new FileWriter(outputFile);
+
+      // choose threshold for when to stop
+      double epsilon=0.01;                    // make it data driven (right now absolute..)
+
+      // run the k-means algorithm on this datafile with a max number of clusters as maxk
+      kMeans algorithm=new kMeans();
+      // Try with k clusters....till maxk clusters
+      int bestModel=1;
+      double bestMDL=1000000000;              // change this
+      for (int k=1;k<=maxk;k++)
+      {
+        algorithm.run(x,k,epsilon);
+        algorithm.printResults();
+        if (algorithm.getMDL() < bestMDL)
+        {
+          bestModel=k;
+          bestMDL=algorithm.getMDL();
+        }
+      }
+      // Report the best model
+      System.out.println("********************************************");
+      System.out.println("The most likely model is " + bestModel + " Gaussians");
+
+      // write into file testClustering.txt the most likely model
