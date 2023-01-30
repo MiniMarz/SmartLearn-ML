@@ -390,3 +390,10 @@ public class kMeans
       System.out.println("The most likely model is " + bestModel + " Gaussians");
 
       // write into file testClustering.txt the most likely model
+      algorithm.run(x,bestModel,epsilon);
+      algorithm.writeFile(out);
+      out.close();
+    }
+  }
+
+}
