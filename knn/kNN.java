@@ -100,3 +100,78 @@ public class kNN
     printResults(trainSetSize-1);
     System.out.println("-------------------------------------------------------");
     //printPredictions();
+
+    // Return the best value of k and of the kernel width
+    return getBestValues();
+
+  }
+
+  /**
+   * Test the test set with values with given values of k[] and kernel[].
+  **/
+  public void test(int[] bestK, int [] bestKernel)
+  {
+    // Initialize numCorrect and squaredError arrays
+    numCorrect = new int[bestKernel.length][bestK.length];
+    squaredError = new double[bestKernel.length][bestK.length];
+    predictions = new double[testSetSize][bestKernel.length][bestK.length];
+
+    // Set up the number of nearest neighbors and the kernel widths
+    this.k = bestK;
+    this.kernel = bestKernel;
+
+    // Evaluate each example from the test set onto the training set
+    kNNExample testExample;
+    for (int i=0; i < testSetSize; i++)
+    {
+      testExample = testSet[i];   // see about evaluation set if makes more sense
+      predictions[i]=testSingle(testExample, trainSet);
+      if (i%25==0)
+        printSimple(i);
+    }
+    printResults(testSetSize-1);
+    System.out.println();
+    System.out.println("-------------------------------------------------------");
+    printPredictions();
+  }
+
+  /**
+   * Test the single example on a train set
+   * Updates the squared error and the number of correctly classified examples
+  **/
+  private double[][] testSingle (Example testExample, kNNExample[] trainSet)
+  {
+    // Sort the train set to get the nearest neighbors
+    // first set the distance each example is from the test example
+    for (int i=0; i < trainSet.length; i++)
+      trainSet[i].setRelativeDist(testExample);
+    // only sort if the maximum of neighbors < the size of the train set
+    if (k[0] < trainSetSize - 1)
+    {
+      kNNComparator comparator = new kNNComparator();
+      Arrays.sort(trainSet, comparator);
+    }
+
+    // Update the squared error and the number of correctly classified examples
+    // for each kernel width and each number of nearest neighbors considered
+    int targetLabel = testExample.getClassLabel();
+    kNNExample neighbor;     // neighbor considered
+    double neighborWeight;   // its weight
+    double neighborValue;    // its value (ie class label)
+    double sumWeightedValue; // weighted sum of each neighbor so far
+    double sumAllWeight;     // sum of the weights of each neighbor so far
+    double probaLabel;
+    double[][] predictions=new double[kernel.length][k.length];
+    int kIndex;              // indexes k[] array
+    // for each kernel width from kernel[]
+    for (int kernelIndex=0; kernelIndex < kernel.length; kernelIndex++)
+    {
+      sumWeightedValue = 0;
+      sumAllWeight = 0;
+      kIndex = 0;
+      // for each neighbor from 0 to max k[]
+      for (int neighborNo=0; neighborNo < k[k.length-1]; neighborNo++)
+      {
+        // compute the probability of each neighbor
+        neighbor = trainSet[neighborNo];
+        neighbor.setWeight(kernel[kernelIndex]);
