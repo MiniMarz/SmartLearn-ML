@@ -249,3 +249,98 @@ public class kNN
       min = attributeVal[0];
       var = sumSquared/trainSetSize - Math.pow(sum/trainSetSize,2);
       featureWeights[i] = 1;
+      if (max - min == 0)
+        featureWeights1[i] = 1;
+      else
+        featureWeights1[i] = 1/Math.exp(max-min);
+      if (var == 0)
+        featureWeights2[i] = 1;
+      else
+        featureWeights2[i] = 1/var;
+    }
+
+    // Default feature weights to 1
+    if (mode == 0)
+      kNNExample.setFeatureWeights(featureWeights);
+    // 1/(max-min)
+    else if (mode == 1)
+      kNNExample.setFeatureWeights(featureWeights1);
+    // 1/var
+    else if (mode == 2)
+      kNNExample.setFeatureWeights(featureWeights2);
+  }
+
+  /**
+   * Print the RMSE and accuracy after having seen a number of examples.
+  **/
+  private void printResults(int iteration)
+  {
+    System.out.println();
+    System.out.println("Iteration =  " + iteration);
+    double[] accuracy = new double[k.length];
+    double[] RMSE = new double[k.length];
+    double[] predictions;
+    double accuracy1;
+    double RMSE1;
+    for (int kernelIndex=0; kernelIndex < kernel.length; kernelIndex++)
+    {
+      System.out.println("Kernel Width =  " + kernel[kernelIndex]);
+      System.out.println("------------------------------------------------");
+      for (int kIndex=0; kIndex < k.length; kIndex++)
+      {
+        accuracy[kIndex] = 100.0 * numCorrect[kernelIndex][kIndex]/(iteration+1);
+        RMSE[kIndex] = Math.sqrt(squaredError[kernelIndex][kIndex]/(iteration+1));
+        System.out.println("k =  " + k[kIndex] + " , Accuracy =  " + accuracy[kIndex] + "% , RMSE =  " + RMSE[kIndex]);
+
+//        predictions=getPredictions(kernelIndex,kIndex);
+//        accuracy1=dataFile.returnAccuracy(predictions);
+//        RMSE1=dataFile.returnRMSE(predictions);
+//        System.out.println("Other k =  " + k[kIndex] + " , Accuracy =  " + accuracy1 + "% , RMSE =  " + RMSE1);
+      }
+    }
+    // used for experiments...
+    // kNN experiments
+    System.out.print(trainSetSize + " ");
+
+    for (int kIndex=0; kIndex < k.length; kIndex++)
+    {
+      accuracy[kIndex] = 100.0 * numCorrect[0][kIndex]/(iteration+1);
+      RMSE[kIndex] = Math.sqrt(squaredError[0][kIndex]/(iteration+1));
+      System.out.print(accuracy[kIndex] + " " + RMSE[kIndex] + " ");
+    }
+
+    // locally weighted experiments
+//    for (int kernelIndex=0; kernelIndex < kernel.length; kernelIndex++)
+//    {
+//      accuracy[0] = 100.0 * numCorrect[kernelIndex][0]/(iteration+1);
+//      RMSE[0] = Math.sqrt(squaredError[kernelIndex][0]/(iteration+1));
+//      System.out.print(accuracy[0] + " " + RMSE[0] + " ");
+//    }
+  }
+
+  /**
+   * Modeified...
+   *
+   * Return predictions
+  **/
+  public double[] getPredictions(int kernel,int k)
+  {
+    double[] pred=new double[testSetSize];
+    for (int i=0;i<testSetSize;i++)
+      pred[i]=this.predictions[i][kernel][k];
+
+    return pred;
+  }
+
+  public void printPredictions()
+  {
+    System.out.println("*********************Predictions**************************");
+    for (int i=0;i<predictions.length;i++)
+    {
+      for (int j=0;j<k.length;j++)
+        System.out.print(predictions[i][0][j]+" ");
+      System.out.print("\n");
+    }
+  }
+
+  /**
