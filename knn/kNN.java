@@ -175,3 +175,77 @@ public class kNN
         // compute the probability of each neighbor
         neighbor = trainSet[neighborNo];
         neighbor.setWeight(kernel[kernelIndex]);
+        neighborWeight = neighbor.getWeight();
+        neighborValue = neighbor.getClassLabel();
+        sumWeightedValue = sumWeightedValue + neighborValue * neighborWeight;
+        sumAllWeight = sumAllWeight + neighborWeight;
+        probaLabel = sumWeightedValue / sumAllWeight;
+        // update results after having seen k[kIndex] - 1 neighbors
+        if (neighborNo == k[kIndex]-1)
+        {
+          if (Math.abs(targetLabel - probaLabel) <= 0.5)
+          {
+            (numCorrect[kernelIndex][kIndex])++;
+          }
+          squaredError[kernelIndex][kIndex] = squaredError[kernelIndex][kIndex] + Math.pow(targetLabel - probaLabel,2);
+          predictions[kernelIndex][kIndex] = probaLabel;
+          kIndex++;
+        }
+      }
+    }
+    return predictions;
+  }
+
+  /**
+   * Returns as first coordinate the best kernel.
+   * Returns as second coordinate the best number of nearest neighbors.
+   * Assumes train or test method has been called before.
+  **/
+  private int[] getBestValues()
+  {
+    double lowestError = 0;
+    int[] bestValues = new int[2];
+    for (int kernelIndex=0; kernelIndex < kernel.length; kernelIndex++)
+    {
+      for (int kIndex=0; kIndex < k.length; kIndex++)
+      {
+        if (squaredError[kernelIndex][kIndex] < lowestError)
+        {
+          lowestError = squaredError[kernelIndex][kIndex];
+          bestValues[0] = kernel[kernelIndex];
+          bestValues[1] = k[kIndex];
+        }
+      }
+    }
+    return bestValues;
+  }
+
+  /**
+   * Scale the feature weights by 1/(max-min) or 1/var depending on mode
+   * using a train set.
+  **/
+  private void scaleFeatureWeights(int mode)
+  {
+    double max, min, var, sum, sumSquared;
+    int numAttributeVal = dataFile.getAttributeNum();
+    double[] attributeVal = new double[trainSetSize];
+    double[] featureWeights = new double[numAttributeVal];
+    double[] featureWeights1 = new double[numAttributeVal];
+    double[] featureWeights2 = new double[numAttributeVal];
+
+    // Find max min and variance of each attribute value
+    for (int i=0; i < numAttributeVal; i++)
+    {
+      sum = 0;
+      sumSquared = 0;
+      for (int j=0; j < trainSetSize; j++)
+      {
+        attributeVal[j] = dataFile.getAttribute(j,i);
+        sum = sum + attributeVal[j];
+        sumSquared = sumSquared + Math.pow(attributeVal[j],2);
+      }
+      Arrays.sort(attributeVal);
+      max = attributeVal[trainSetSize-1];
+      min = attributeVal[0];
+      var = sumSquared/trainSetSize - Math.pow(sum/trainSetSize,2);
+      featureWeights[i] = 1;
