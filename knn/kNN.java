@@ -344,3 +344,73 @@ public class kNN
   }
 
   /**
+   * Print the 1-nearest neighbor results.
+   * Used to see how fast the algorithm performs.
+   *
+   * Need to get predictions on the test set need to rethink all that...
+   *
+  **/
+  private void printSimple(int iteration)
+  {
+    double accuracy;
+    double RMSE;
+    int kIndex = 0;
+    int kernelIndex = 0;
+
+    System.out.println("Iteration =  " + iteration);
+    accuracy = (100.0 * numCorrect[kernelIndex][kIndex])/(iteration+1);
+    RMSE = Math.sqrt(squaredError[kernelIndex][kIndex]/(iteration+1));
+    System.out.println("k =  " + k[kIndex] + " , Accuracy =  " + accuracy + "% , RMSE =  " + RMSE);
+
+    // not good here does
+//    double[] predictions=getPredictions(kernelIndex,kIndex);
+//    double accuracy1=dataFile.returnAccuracy(predictions);
+//    double RMSE1=dataFile.returnRMSE(predictions);
+    //System.out.println("Other k =  " + k[kIndex] + " , Accuracy =  " + accuracy1 + "% , RMSE =  " + RMSE1);
+  }
+
+  public void prettyPrintParameters()
+  {
+  }
+
+  /**
+   * Report the baseline accuracy of the training set
+  */
+  private void reportBaseline()
+  {
+    int[] count = new int[2];
+    int bestCount = 0;
+    int label;
+    for (int i=0; i < trainSetSize; i++)
+    {
+      label = trainSet[i].getClassLabel();
+      count[label]++;
+      if (count[label] > bestCount)
+      {
+        bestCount = count[label];
+      }
+    }
+    System.out.println("Size of the training Set: " + trainSetSize);
+    System.out.println("Baseline Accuracy of Training Set =  " + 100.0 * bestCount/trainSetSize + "%");
+  }
+
+  /**
+   * Start of this program.
+   * Mode is 0 for Unweighted kNN
+   *         1 for Weighted kNN
+   *         2 for Locally weighted Averaging
+   * Param is either the maximum number of neighbors to consider or the maximum kernel width.
+  **/
+  public static void main(String[] args)
+  {
+    if (args.length!=4)
+    {
+      System.out.println("Wrong usage. Type java kNN [data file] [training set size] [mode] [param]");
+    }
+    else
+    {
+      // Read in argument
+      DataSet dataFile = new DataSet(args[0]);
+      int trainSetSize = Integer.parseInt(args[1]);
+      int mode = Integer.parseInt(args[2]);
+      int lastParam = Integer.parseInt(args[3]);
