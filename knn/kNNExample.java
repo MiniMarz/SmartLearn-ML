@@ -7,4 +7,7 @@ import ann.*;
 /**
  * This class describes a particular example for the kNN algorithm.
  */
-public class kNNEx
+public class kNNExample extends Example
+{
+
+  private double relativeDistance;         // The dist
