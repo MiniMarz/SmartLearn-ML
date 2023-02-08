@@ -21,3 +21,18 @@ public class kNNComparator implements Comparator
     kNNExample example1 = (kNNExample) o1;
     kNNExample example2 = (kNNExample) o2;
     double dist1 = example1.getRelativeDist();
+    double dist2 = example2.getRelativeDist();
+    if (dist1 < dist2)
+      return -1;
+    else if (dist1 == dist2)
+      return 0;
+    else
+      return 1;
+  }
+
+  public boolean equals(Object o)
+  {
+    return(this.equals(o));
+  }
+
+}
