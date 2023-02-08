@@ -5,4 +5,6 @@
 import ann.*;
 
 /**
- * This cla
+ * This class describes a particular example for the kNN algorithm.
+ */
+public class kNNEx
