@@ -10,4 +10,5 @@ import ann.*;
 public class kNNExample extends Example
 {
 
-  private double relativeDistance;         // The dist
+  private double relativeDistance;         // The distance this example is from another example
+  private double weight; 
