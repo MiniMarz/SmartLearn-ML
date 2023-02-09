@@ -11,4 +11,5 @@ public class kNNExample extends Example
 {
 
   private double relativeDistance;         // The distance this example is from another example
-  private double weight; 
+  private double weight;                   // Weight given to this example
+  private int id;     
