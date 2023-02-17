@@ -20,3 +20,6 @@ public class kNNExample extends Example
   */
   public kNNExample(Example example, int id)
   {
+    super(example);
+    this.id = id;
+    this.weight = 1;  // by de
