@@ -16,4 +16,7 @@ public class kNNExample extends Example
   private static double[] featureWeights;  // Used to compute weighted distance
 
   /**
-   * C
+   * Constructor
+  */
+  public kNNExample(Example example, int id)
+  {
