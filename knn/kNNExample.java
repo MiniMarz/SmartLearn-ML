@@ -22,4 +22,8 @@ public class kNNExample extends Example
   {
     super(example);
     this.id = id;
-    this.weight = 1;  // by de
+    this.weight = 1;  // by default each weight is set to 1
+  }
+
+  /**
+   * Set the weight of this exampl
