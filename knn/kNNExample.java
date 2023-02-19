@@ -26,4 +26,6 @@ public class kNNExample extends Example
   }
 
   /**
-   * Set the weight of this exampl
+   * Set the weight of this example based on the kernel width.
+   * If kernel = 0 then unweighted kNN.
+   * If kern
