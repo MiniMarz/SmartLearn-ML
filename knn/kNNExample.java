@@ -31,4 +31,6 @@ public class kNNExample extends Example
    * If kernel = 1 then weighted kNN.
   */
   public void setWeight(int kernel)
-  
+  {
+    this.weight = 1.0/Math.exp(kernel * relativeDistance);
+  }
