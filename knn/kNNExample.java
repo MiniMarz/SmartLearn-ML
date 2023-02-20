@@ -34,3 +34,7 @@ public class kNNExample extends Example
   {
     this.weight = 1.0/Math.exp(kernel * relativeDistance);
   }
+
+  /**
+   * Assumes feature weights have been set
+   * Compute the w
