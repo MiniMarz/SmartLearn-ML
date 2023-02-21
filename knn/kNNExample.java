@@ -37,4 +37,6 @@ public class kNNExample extends Example
 
   /**
    * Assumes feature weights have been set
-   * Compute the w
+   * Compute the weighted distance relative to example
+  */
+  public void setRelativ
