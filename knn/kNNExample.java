@@ -42,4 +42,6 @@ public class kNNExample extends Example
   public void setRelativeDist(Example example)
   {
     double sum=0;
-    for (int i=0; i < att
+    for (int i=0; i < attributes.length; i++)
+    {
+      sum = sum + featureWeights[i] * (
