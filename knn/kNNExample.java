@@ -44,4 +44,6 @@ public class kNNExample extends Example
     double sum=0;
     for (int i=0; i < attributes.length; i++)
     {
-      sum = sum + featureWeights[i] * (
+      sum = sum + featureWeights[i] * (Math.pow(getAttribute(i) - example.getAttribute(i), 2));
+    }
+    this.r
