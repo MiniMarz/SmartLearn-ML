@@ -50,4 +50,6 @@ public class kNNExample extends Example
   }
 
   /**
-   * Two kNN examples are e
+   * Two kNN examples are equal if they have the same ids
+  */
+  public boolean equals(kNNExamp
