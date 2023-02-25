@@ -46,4 +46,8 @@ public class kNNExample extends Example
     {
       sum = sum + featureWeights[i] * (Math.pow(getAttribute(i) - example.getAttribute(i), 2));
     }
-    this.r
+    this.relativeDistance = Math.sqrt(sum);
+  }
+
+  /**
+   * Two kNN examples are e
