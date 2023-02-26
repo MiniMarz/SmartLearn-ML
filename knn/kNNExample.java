@@ -66,4 +66,7 @@ public class kNNExample extends Example
     return relativeDistance;
   }
 
-  /
+  /**
+   * Return the weight of this kNN example
+  */
+  public doubl
