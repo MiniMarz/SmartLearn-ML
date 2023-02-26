@@ -52,4 +52,11 @@ public class kNNExample extends Example
   /**
    * Two kNN examples are equal if they have the same ids
   */
-  public boolean equals(kNNExamp
+  public boolean equals(kNNExample example)
+  {
+    return (this.id == example.getId());
+  }
+
+
+  /**
+   * R
