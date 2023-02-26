@@ -82,4 +82,6 @@ public class kNNExample extends Example
     return id;
   }
 
-  /
+  /**
+   * Set the feature weights to the specified values
+  */
