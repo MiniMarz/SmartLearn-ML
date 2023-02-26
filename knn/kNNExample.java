@@ -69,4 +69,10 @@ public class kNNExample extends Example
   /**
    * Return the weight of this kNN example
   */
-  public doubl
+  public double getWeight()
+  {
+    return weight;
+  }
+
+  /**
+   * 
