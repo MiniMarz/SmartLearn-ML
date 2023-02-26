@@ -59,4 +59,6 @@ public class kNNExample extends Example
 
 
   /**
-   * R
+   * Return the relative distance of this kNN example
+  */
+  public 
