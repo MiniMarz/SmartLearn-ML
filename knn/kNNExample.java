@@ -75,4 +75,11 @@ public class kNNExample extends Example
   }
 
   /**
-   * 
+   * Return the id of this kNN example
+  */
+  public int getId()
+  {
+    return id;
+  }
+
+  /
