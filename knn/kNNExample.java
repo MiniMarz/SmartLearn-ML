@@ -61,4 +61,9 @@ public class kNNExample extends Example
   /**
    * Return the relative distance of this kNN example
   */
-  public 
+  public double getRelativeDist()
+  {
+    return relativeDistance;
+  }
+
+  /
