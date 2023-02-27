@@ -85,3 +85,6 @@ public class kNNExample extends Example
   /**
    * Set the feature weights to the specified values
   */
+  public static void setFeatureWeights(double[] featureWeights)
+  {
+    i
