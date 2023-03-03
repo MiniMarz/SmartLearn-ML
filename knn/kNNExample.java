@@ -94,3 +94,6 @@ public class kNNExample extends Example
   }
 
   /**
+   * Default feature weights to one
+  */
+  public static void setFeatureWe
