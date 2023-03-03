@@ -98,4 +98,6 @@ public class kNNExample extends Example
   */
   public static void setFeatureWeights(int attributeNum)
   {
-    kNNExample.featureWeights = 
+    kNNExample.featureWeights = new double[attributeNum];
+    for (int i=0; i < attributeNum; i++)
+      kNNEx
