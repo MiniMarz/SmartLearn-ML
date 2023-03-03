@@ -87,4 +87,5 @@ public class kNNExample extends Example
   */
   public static void setFeatureWeights(double[] featureWeights)
   {
-    i
+    int numWeights = featureWeights.length;
+    kNNExample.featureW
