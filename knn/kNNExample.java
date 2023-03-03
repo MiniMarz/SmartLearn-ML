@@ -89,4 +89,8 @@ public class kNNExample extends Example
   {
     int numWeights = featureWeights.length;
     kNNExample.featureWeights = new double[numWeights];
-    for (int i=0; i < numWeights; i+
+    for (int i=0; i < numWeights; i++)
+      kNNExample.featureWeights[i] = featureWeights[i];
+  }
+
+  /**
