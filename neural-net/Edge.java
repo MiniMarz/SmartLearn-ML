@@ -11,4 +11,5 @@ public class Edge implements Serializable
 {
   /*********** Variables **************/
 
-  private double weight;            /
+  private double weight;            // the weight associated with this edge
+  private Neuron source;            // 
