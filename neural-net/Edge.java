@@ -12,4 +12,5 @@ public class Edge implements Serializable
   /*********** Variables **************/
 
   private double weight;            // the weight associated with this edge
-  private Neuron source;            // 
+  private Neuron source;            // the neuron it is connected to in layer i
+  private Neuron dest;	       
