@@ -20,4 +20,5 @@ public class Edge implements Serializable
   private double deltaWeightOld;    // keep track of the old value of the change in weight
 
   // backpropation parameters
-  private
+  private double momentum ;	// momentum term in order not to get stuck in local minima
+  priv
