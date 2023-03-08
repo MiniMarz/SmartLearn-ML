@@ -17,4 +17,7 @@ public class Edge implements Serializable
   private int id;	            // identifier for the edge
   private int mode;	            // the mode to use for update rule
   private double deltaWeight;       // the change in weight of this edge
-  private double deltaWeightOld;    // keep tr
+  private double deltaWeightOld;    // keep track of the old value of the change in weight
+
+  // backpropation parameters
+  private
