@@ -26,4 +26,5 @@ public class Edge implements Serializable
   /*********** Methods *****************/
 
   /**
-  * Edg
+  * Edge Constructor
+  * @param parent is the neuron it is connected to
