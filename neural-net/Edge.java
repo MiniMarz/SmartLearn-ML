@@ -43,4 +43,8 @@ public class Edge implements Serializable
     this.momentum=momentum;
     this.mode=mode;
     this.deltaWeight=0;
-    this.
+    this.deltaWeightOld=0;
+  }
+
+  /**
+  * Resets the weight for the edge with some r
