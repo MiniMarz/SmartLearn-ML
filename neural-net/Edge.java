@@ -40,4 +40,7 @@ public class Edge implements Serializable
     this.dest=child;
     this.learningRate=lr;
     this.id=idd;
+    this.momentum=momentum;
+    this.mode=mode;
+    this.deltaWeight=0;
     this.
