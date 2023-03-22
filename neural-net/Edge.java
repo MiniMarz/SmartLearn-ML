@@ -32,4 +32,6 @@ public class Edge implements Serializable
   * @param lr is the learning rate it is initialized to
   * @param idd is the id of this Edge
   * @param momentum is the momentum rate this edge is initialized to
-  * @param mode indicates the mode (Batch or Stochastic) t
+  * @param mode indicates the mode (Batch or Stochastic) to use for training
+  **/
+  public Edge(Neuron parent, Neuron child, double l
