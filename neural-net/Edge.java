@@ -36,4 +36,8 @@ public class Edge implements Serializable
   **/
   public Edge(Neuron parent, Neuron child, double lr, int idd, double momentum, int mode)
   {
-    this.source=par
+    this.source=parent;
+    this.dest=child;
+    this.learningRate=lr;
+    this.id=idd;
+    this.
