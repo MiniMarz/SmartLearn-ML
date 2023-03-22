@@ -34,4 +34,6 @@ public class Edge implements Serializable
   * @param momentum is the momentum rate this edge is initialized to
   * @param mode indicates the mode (Batch or Stochastic) to use for training
   **/
-  public Edge(Neuron parent, Neuron child, double l
+  public Edge(Neuron parent, Neuron child, double lr, int idd, double momentum, int mode)
+  {
+    this.source=par
