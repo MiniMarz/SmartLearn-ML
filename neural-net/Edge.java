@@ -28,4 +28,6 @@ public class Edge implements Serializable
   /**
   * Edge Constructor
   * @param parent is the neuron it is connected to in layer i
-  * @param child is the neuron it is connected to in layer i+
+  * @param child is the neuron it is connected to in layer i+1
+  * @param lr is the learning rate it is initialized to
+  * @param idd is th
