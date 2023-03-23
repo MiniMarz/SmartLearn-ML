@@ -49,4 +49,5 @@ public class Edge implements Serializable
   /**
   * Resets the weight for the edge with some random value
   * Chooses the weights uniformly between w and -w
-  * Where w=1
+  * Where w=1/sqrt(n) and n=# of inputs going into the destination of this edge
+  *
