@@ -55,4 +55,8 @@ public class Edge implements Serializable
   {
     int n=getDest().getParentNum();
     double w=1.0/Math.sqrt(n);
-    if (Math.random()>1/2.0
+    if (Math.random()>1/2.0)
+      weight=Math.random()*w;
+    else
+      weight=-1*Math.random()*w;
+ 
