@@ -53,4 +53,6 @@ public class Edge implements Serializable
   **/
   public void reset()
   {
-    int n=getDest().getParentNum(
+    int n=getDest().getParentNum();
+    double w=1.0/Math.sqrt(n);
+    if (Math.random()>1/2.0
