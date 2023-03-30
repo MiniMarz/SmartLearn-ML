@@ -64,4 +64,10 @@ public class Edge implements Serializable
   /**
   * Sets the momentum of the neuron
   **/
-  public
+  public void setMomentum(double mn)
+  {
+    this.momentum=mn;
+  }
+
+  /**
+  * Sets the
