@@ -87,4 +87,6 @@ public class Edge implements Serializable
 
   /**
   * Update the change in weight of this edge according to the error term
-  * @param errTerm is the er
+  * @param errTerm is the error term that is propagated down
+  **/
+  public void updateDeltaWeight(double 
