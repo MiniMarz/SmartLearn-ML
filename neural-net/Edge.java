@@ -72,4 +72,10 @@ public class Edge implements Serializable
   /**
   * Sets the learning rate of the neuron
   **/
-  public void setLearningRate(do
+  public void setLearningRate(double lr)
+  {
+    this.learningRate=lr;
+  }
+
+  /**
+  * Set the w
