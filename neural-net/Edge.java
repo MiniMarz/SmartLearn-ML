@@ -78,4 +78,8 @@ public class Edge implements Serializable
   }
 
   /**
-  * Set the w
+  * Set the weight
+  **/
+  public void setWeight(double x)
+  {
+    this.weig
