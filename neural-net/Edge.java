@@ -86,4 +86,5 @@ public class Edge implements Serializable
   }
 
   /**
-  * Update the change in weight of th
+  * Update the change in weight of this edge according to the error term
+  * @param errTerm is the er
