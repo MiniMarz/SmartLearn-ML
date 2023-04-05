@@ -92,4 +92,5 @@ public class Edge implements Serializable
   public void updateDeltaWeight(double errterm)
   {
     Neuron s=getSource();
-    deltaWeight=deltaWeight + lear
+    deltaWeight=deltaWeight + learningRate*(1-momentum)*errterm*s.getValue()
+                      
