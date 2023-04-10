@@ -131,4 +131,8 @@ public class Edge implements Serializable
 
   /**
   * @return the destination neuron for this edge
-  **
+  **/
+  public Neuron getDest()
+  {
+    return dest;
+  
