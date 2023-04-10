@@ -135,4 +135,6 @@ public class Edge implements Serializable
   public Neuron getDest()
   {
     return dest;
-  
+  }
+
+}
