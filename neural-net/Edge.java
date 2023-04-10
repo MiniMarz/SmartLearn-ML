@@ -116,4 +116,10 @@ public class Edge implements Serializable
   /**
   * @return the weight for this edge
   **/
-  public doub
+  public double getWeight()
+  {
+    return weight;
+  }
+
+  /**
+  * @return the source neuron for thi
