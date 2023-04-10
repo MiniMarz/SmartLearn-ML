@@ -113,4 +113,7 @@ public class Edge implements Serializable
     weight=weight + deltaWeight;
   }
 
-  
+  /**
+  * @return the weight for this edge
+  **/
+  public doub
