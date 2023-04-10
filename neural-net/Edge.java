@@ -108,4 +108,9 @@ public class Edge implements Serializable
   /**
   * Update the weight of this edge
   **/
-  publ
+  public void updateWeight()
+  {
+    weight=weight + deltaWeight;
+  }
+
+  
