@@ -102,4 +102,10 @@ public class Edge implements Serializable
   public void initDeltaWeight()
   {
     deltaWeightOld=deltaWeight;   // for momentum...
-    deltaWeight
+    deltaWeight=0;
+  }
+
+  /**
+  * Update the weight of this edge
+  **/
+  publ
