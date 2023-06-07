@@ -69,4 +69,5 @@ material is not limited to numerical parameters, data structure
 layouts and accessors, or small macros, inline functions and templates
 (ten or fewer lines in length), you do both of the following:
  
-   a) Give prominent notice with each copy of the 
+   a) Give prominent notice with each copy of the object code that the
+   Library is used in it and that the Library and its
