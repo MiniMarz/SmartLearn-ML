@@ -82,4 +82,6 @@ layouts and accessors, or small macros, inline functions and templates
 taken together, effectively do not restrict modification of the
 portions of the Library contained in the Combined Work and reverse
 engineering for debugging such modifications, if you also do each of
-the following
+the following:
+ 
+   a) Give prominent notice with each copy of the Combine
