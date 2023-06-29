@@ -104,4 +104,6 @@ the following:
        recombine or relink the Application with a modified version of
        the Linked Version to produce a modified Combined Work, in the
        manner specified by section 6 of the GNU GPL for conveying
-       Cor
+       Corresponding Source.
+ 
+       1) Use a suitable shared library mechanism for linking wi
