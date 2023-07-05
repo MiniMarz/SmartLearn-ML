@@ -110,4 +110,7 @@ the following:
        Library. A suitable mechanism is one that (a) uses at run time
        a copy of the Library already present on the user's computer
        system, and (b) will operate properly with a modified version
-       of the Library that is interface-compatible wit
+       of the Library that is interface-compatible with the Linked
+       Version.
+ 
+   e) Provide Installation Information,
