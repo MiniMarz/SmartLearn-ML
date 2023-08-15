@@ -73,3 +73,64 @@ public class NeuralNet implements Serializable
     }
     // Step 2
     MLPNetworkSetup(numInLayer);
+  }
+
+  /**
+  * Set up the forward backward edges relationship in the neural network in MLP fashion
+  * @param numInLayer indicates the number of neuron in each layer
+  * Steps  : Create an edge for each neuron in layer i and neuron in layer i+1.
+  *          Add this edge to the set of forward edges for the neuron in layer i
+  *	     Add this edge to the set of backward edges for the neuron in layer i+1
+  *          Call the edge reset function to set random initial weights.
+  **/
+  private  void MLPNetworkSetup(int [] numInLayer)
+  {
+    this.edges=new Vector();
+    Neuron parent;
+    Neuron child;
+    Edge e;
+    int id=0;
+    // in layer i
+    for (int i=0;i<layerNo-1;i++)
+    {
+      // and layer numbering j
+      for (int j=0;j<numInLayer[i];j++)
+      {
+        parent=(Neuron) neurons.get(neuronsIndex[i][j]);  // get neuron at this location
+        for (int k=0;k<numInLayer[i+1];k++)
+        {
+          child=(Neuron) neurons.get(neuronsIndex[i+1][k]);
+          e=new Edge(parent,child,learningRate,id,momentum,mode);
+          parent.addForwardEdge(e);
+          child.addBackwardEdge(e);
+          edges.add(id,e);
+          id++;
+        }
+      }
+    }
+    // now we can call the reset function on each edge
+    for (int i=0;i<edges.size();i++)
+      ((Edge) edges.get(i)).reset();
+
+  }
+
+  /**
+  * Print out all the weights of all the edges
+  * A useful debugging tool to see whether your neural network is indeed changing the weights
+  **/
+  public void printWeight()
+  {
+    for (int i=0;i<edges.size();i++)
+    {
+      System.out.print("Weight of edge "+i+": "+ ((Edge) edges.get(i)) .getWeight()+"  ");
+    }
+  }
+
+  /**
+  * run the network given an array of attributes from an example
+  * @param Example example contains the input attributes
+  * Step 1: Set all the input neurons [neurons in layer 0] with the attributes in this example
+  * Step 2: Calculate the value of each neuron beginning from the input layer to the output layer.
+  **/
+  private void runNetwork(Example example)
+  {
