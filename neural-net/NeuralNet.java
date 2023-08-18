@@ -134,3 +134,82 @@ public class NeuralNet implements Serializable
   **/
   private void runNetwork(Example example)
   {
+    // Step 1
+    Neuron input;
+    double x;
+    for (int j=0;j<inputNum;j++)
+    {
+      input=(Neuron) neurons.get(neuronsIndex[0][j]);
+      x=example.getAttribute(j);
+      input.setValue(x);
+    }
+    // Step 2
+    Neuron n;
+    for (int i=1;i<layerNo;i++)
+    {
+      for (int j=0;j<neuronsIndex[i].length;j++)
+      {
+        n=(Neuron) neurons.elementAt(neuronsIndex[i][j]);
+        n.calValue();
+      }
+    }
+  }
+
+
+  /**
+  * Train the network using this example
+  * @param example contains the input attributes
+  * Step 1: run network on this training example
+  * Step 2: perform backpropagation based on the class label and network output for this example
+  **/
+  private void trainSingle(Example example)
+  {
+    runNetwork(example);
+    // compute the change in weight
+    backPropagation(example);
+    // update the weights after having seen this single example
+    updateWeights();
+  }
+
+  /**
+  * Train the network using all the examples in the training set
+  * @param example contains the input attributes
+  **/
+  private void trainAll(DataSet trainingSet)
+  {
+    Example example;
+    for (int i=0;i<trainingSet.size();i++)
+    {
+      example=trainingSet.getExample(i);
+      runNetwork(example);
+      // update the change in weight of each edge
+      backPropagation(example);
+    }
+    // now update the weights of each edge
+    updateWeights();
+  }
+
+  /**
+  * Update the weights of this ANN and reinitialize the change in weights
+  **/
+  public void updateWeights()
+  {
+    Edge e;
+    for (int i=0;i<edges.size();i++)
+    {
+      e=(Edge) edges.get(i);
+      e.updateWeight();
+      e.initDeltaWeight();
+    }
+  }
+
+  /**
+  * To test a single element
+  * Assume there is only one output neuron, so the class label is simply based on whether the output value
+  * is more than 0.5 or less than 0.5. If output neuron >0.5 return 1 else return 0.
+  * @param example contains the input attribute
+  * @return the class it should be in
+  **/
+  public int testSingle(Example example)
+  {
+    Neuron output;
