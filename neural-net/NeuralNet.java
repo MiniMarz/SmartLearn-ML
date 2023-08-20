@@ -280,3 +280,70 @@ public class NeuralNet implements Serializable
       System.out.println("Epoch : " + epoch);
       trainingAcc=testDataSet(trainingSet);
       System.out.println("Training Acc : " + trainingAcc);
+      validationAcc=testDataSet(evaluationSet);
+      System.out.println("Validation Acc : " + validationAcc);
+      trainingRMSE=computeRMS(trainingSet);
+      System.out.println("Training RMSE : " + trainingRMSE);
+      validationRMSE=computeRMS(evaluationSet);
+      System.out.println("Validation RMSE : " + validationRMSE);
+      out.write("\n"+epoch+","+validationAcc+","+trainingAcc+"\r");
+    }
+  }
+
+  /**
+  * Allow user to use the entire data set to train for specified number of iterations
+  * @param trainingSet contains all the examples to be used for training
+  * @param evaluationSet contains all the examples for validation purpose
+  * @param epochNum indicates the number of iterations to train for
+  **/
+  public void iterativeTrain(DataSet trainingSet, DataSet evaluationSet, int epochNum, FileWriter out) throws IOException
+  {
+    int examplesNum=trainingSet.size();
+    Example example;
+    if (mode==STOCHASTICMODE)
+    {
+      for (int epoch=0;epoch<epochNum;epoch++)
+      {
+          for (int i=0;i<trainingSet.size();i++)
+          {
+            example=trainingSet.getExample(i);
+            trainSingle(example);
+          }
+          reportAccuracy(trainingSet,evaluationSet,epoch,25,out);      // before n=20
+      }
+    }
+    if (mode==BATCHMODE)
+    {
+      for (int epoch=0;epoch<epochNum;epoch++)
+      {
+        trainAll(trainingSet);
+        reportAccuracy(trainingSet,evaluationSet,epoch,20,out);
+      }
+    }
+  }
+
+  /**
+  * Perform back propagation : gradient descent search to learn the weights of the network
+  * Stochastic gradient descent
+  * @param example contains all the class label for this example
+  **/
+  public void backPropagation(Example example)
+  {
+    Neuron output;
+    Neuron n;
+    Edge e;
+    double targetVal;
+    double errorTerm;
+    // from output-to-hidden units
+    targetVal=example.getClassLabel();
+    for (int j=0;j<outputNum;j++)
+    {
+      output=(Neuron) neurons.get(neuronsIndex[layerNo-1][j]);
+      output.backErrorTrack(targetVal);
+      errorTerm=output.getErrorTerm();
+      for (int k=0;k<output.getParentNum();k++)
+      {
+        e=(Edge) (output.getBackwardEdges()).get(k);
+        e.updateDeltaWeight(errorTerm);
+      }
+    }
