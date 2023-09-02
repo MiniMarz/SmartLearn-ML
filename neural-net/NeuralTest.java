@@ -7,4 +7,7 @@ public class NeuralTest {
   {
     if (args.length!=2)
     {
-      System.out.println("Wrong usag
+      System.out.println("Wrong usage. Type java NeuralTest [evaluationFile] [savedANN]");
+    }
+    else
+    {
