@@ -12,4 +12,5 @@ public class NeuralTest {
     else
     {
       DataSet mysteryDataSet=new DataSet(args[0]);
-      NeuralN
+      NeuralNet myNetwork=NeuralNet.load(args[1]);
+      double accuracy=my
