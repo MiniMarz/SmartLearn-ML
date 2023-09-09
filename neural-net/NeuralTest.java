@@ -14,4 +14,7 @@ public class NeuralTest {
       DataSet mysteryDataSet=new DataSet(args[0]);
       NeuralNet myNetwork=NeuralNet.load(args[1]);
       double accuracy=myNetwork.testDataSet(mysteryDataSet);
-      System.out.println("Accuracy of my sa
+      System.out.println("Accuracy of my saved ANN: " + accuracy);
+    }
+  }
+}
