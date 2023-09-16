@@ -9,4 +9,9 @@
 
 package shotgun;
 
-import java.util.
+import java.util.*;
+import java.io.*;
+
+/**
+ * A class encapsulating an N-class ensemble.
+ * This class
