@@ -14,4 +14,6 @@ import java.io.*;
 
 /**
  * A class encapsulating an N-class ensemble.
- * This class
+ * This class is used for N-class classification.
+**/
+public class Ensemble extend
