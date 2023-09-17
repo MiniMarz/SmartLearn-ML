@@ -16,4 +16,9 @@ import java.io.*;
  * A class encapsulating an N-class ensemble.
  * This class is used for N-class classification.
 **/
-public class Ensemble extend
+public class Ensemble extends Model
+{
+
+  private int n;
+  private Predictions[] nClassBag;
+  private P
