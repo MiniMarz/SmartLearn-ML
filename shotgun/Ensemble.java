@@ -21,4 +21,6 @@ public class Ensemble extends Model
 
   private int n;
   private Predictions[] nClassBag;
-  private P
+  private Predictions nClassPred;
+
+  public Ensemble(Targets[] targets,
