@@ -23,4 +23,7 @@ public class Ensemble extends Model
   private Predictions[] nClassBag;
   private Predictions nClassPred;
 
-  public Ensemble(Targets[] targets,
+  public Ensemble(Targets[] targets, int size)
+  {
+    this.n=targets.length;
+    this.numModels=
