@@ -26,4 +26,7 @@ public class Ensemble extends Model
   public Ensemble(Targets[] targets, int size)
   {
     this.n=targets.length;
-    this.numModels=
+    this.numModels=0;
+    for (int i=0; i<n; i++)
+    {
+      this.nClassBag[i]=new Predictio
