@@ -33,4 +33,9 @@ public class Ensemble extends Model
     }
     this.nClassPred=new Predictions(targets[0]);
     this.nClassPred.setNumModels(1);                         // ugly
+  }
+
+  public Ensemble(double perf)
+  {
+    this.performance=perf;
  
