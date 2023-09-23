@@ -31,4 +31,6 @@ public class Ensemble extends Model
     {
       this.nClassBag[i]=new Predictions(targets[i]);
     }
-    this.nClassPred=new Predictions(targets[0]
+    this.nClassPred=new Predictions(targets[0]);
+    this.nClassPred.setNumModels(1);                         // ugly
+ 
