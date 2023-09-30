@@ -43,4 +43,7 @@ public class Ensemble extends Model
   public Model justPerf()
   {
     computePerformance();
-    return ne
+    return new Ensemble(getPerformance());
+  }
+
+  public void add(Predictions model)
