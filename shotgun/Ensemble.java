@@ -38,4 +38,9 @@ public class Ensemble extends Model
   public Ensemble(double perf)
   {
     this.performance=perf;
- 
+  }
+
+  public Model justPerf()
+  {
+    computePerformance();
+    return ne
