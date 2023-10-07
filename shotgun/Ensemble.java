@@ -56,4 +56,7 @@ public class Ensemble extends Model
 
   public void sub(Predictions model)
   {
-    this.nClassBag[model.getPredictedClass()].sub(model)
+    this.nClassBag[model.getPredictedClass()].sub(model);
+    updateNClassPred();
+    this.name=model.getName();
+    thi
