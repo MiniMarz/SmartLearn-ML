@@ -59,4 +59,7 @@ public class Ensemble extends Model
     this.nClassBag[model.getPredictedClass()].sub(model);
     updateNClassPred();
     this.name=model.getName();
-    thi
+    this.numModels-=model.getNumModels();
+  }
+
+  public double 
