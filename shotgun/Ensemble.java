@@ -62,4 +62,9 @@ public class Ensemble extends Model
     this.numModels-=model.getNumModels();
   }
 
-  public double 
+  public double compute(int i)
+  {
+    return nClassPred.compute(i);
+  }
+
+  private void upd
