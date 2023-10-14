@@ -67,4 +67,7 @@ public class Ensemble extends Model
     return nClassPred.compute(i);
   }
 
-  private void upd
+  private void updateNClassPred()
+  {
+    int argMax=0;
+    double max=nClassB
