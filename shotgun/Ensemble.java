@@ -70,4 +70,6 @@ public class Ensemble extends Model
   private void updateNClassPred()
   {
     int argMax=0;
-    double max=nClassB
+    double max=nClassBag[argMax].getProba(0);
+    double current;
+    for (int i=0; i<nClassBa
