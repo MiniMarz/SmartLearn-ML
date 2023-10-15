@@ -72,4 +72,7 @@ public class Ensemble extends Model
     int argMax=0;
     double max=nClassBag[argMax].getProba(0);
     double current;
-    for (int i=0; i<nClassBa
+    for (int i=0; i<nClassBag[0].getSize(); i++)
+    {
+      argMax=0;
+      max=nClassBag[argMax].
