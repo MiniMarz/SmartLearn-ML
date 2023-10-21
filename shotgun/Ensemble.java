@@ -82,4 +82,8 @@ public class Ensemble extends Model
         if (current>max)
         {
           max=current;
-          a
+          argMax=j;
+        }
+      }
+      nClassPred.setProbaClass(i,max);
+  
