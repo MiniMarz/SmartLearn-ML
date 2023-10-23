@@ -86,4 +86,4 @@ public class Ensemble extends Model
         }
       }
       nClassPred.setProbaClass(i,max);
-  
+      nClassPred.setTarget(i,nClassBag[argMax].getTargets().getTrueValue(i));
