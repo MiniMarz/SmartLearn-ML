@@ -91,4 +91,9 @@ public class Ensemble extends Model
   }
 
   // may have to change that
-  public void write(F
+  public void write(FileWriter out)
+  {
+    nClassPred.write(out);
+  }
+
+  public Model c
