@@ -96,4 +96,9 @@ public class Ensemble extends Model
     nClassPred.write(out);
   }
 
-  public Model c
+  public Model copy()
+  {
+    return nClassPred.copy();
+  }
+
+}
