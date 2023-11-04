@@ -8,3 +8,8 @@
 **/
 
 package shotgun;
+
+import java.io.*;
+
+/**
+ * A model could either be a set of predict
