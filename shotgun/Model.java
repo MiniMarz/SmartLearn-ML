@@ -12,4 +12,6 @@ package shotgun;
 import java.io.*;
 
 /**
- * A model could either be a set of predict
+ * A model could either be a set of predictions or an N-class ensemble.
+**/
+public abstract class Model i
