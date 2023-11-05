@@ -14,4 +14,7 @@ import java.io.*;
 /**
  * A model could either be a set of predictions or an N-class ensemble.
 **/
-public abstract class Model i
+public abstract class Model implements Comparable
+{
+
+  protected static final int ACC=0, RM
