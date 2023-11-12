@@ -23,4 +23,5 @@ public abstract class Model implements Comparable
                                            "FSC","APR","LFT","CST","NRM","MXE","BSP"};
   protected static final double eps=1.0e-99;
 
-  prot
+  protected int numModels;                    // number of models added
+  protected
