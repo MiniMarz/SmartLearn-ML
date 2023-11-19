@@ -24,4 +24,5 @@ public abstract class Model implements Comparable
   protected static final double eps=1.0e-99;
 
   protected int numModels;                    // number of models added
-  protected
+  protected double performance;               // performance of the model
+  pr
