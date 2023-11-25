@@ -26,4 +26,4 @@ public abstract class Model implements Comparable
   protected int numModels;                    // number of models added
   protected double performance;               // performance of the model
   protected String name;                      // name of the model
-  prot
+  protected int id;                           // a unique id given to th
