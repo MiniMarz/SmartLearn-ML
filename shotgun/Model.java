@@ -31,4 +31,5 @@ public abstract class Model implements Comparable
   protected static int mode;                  // the performance measure we are hillclimbing on
   protected static int bspMode;               // performance measure to do bootstrapping on
 
-  protected static double[] w;     
+  protected static double[] w;                // weights weighted combination of performances
+  protect
