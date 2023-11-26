@@ -28,4 +28,5 @@ public abstract class Model implements Comparable
   protected String name;                      // name of the model
   protected int id;                           // a unique id given to this model
 
-  protected static int mode;                  // the performance measure we are hi
+  protected static int mode;                  // the performance measure we are hillclimbing on
+  protected static int bspMode;               // perfo
