@@ -29,4 +29,6 @@ public abstract class Model implements Comparable
   protected int id;                           // a unique id given to this model
 
   protected static int mode;                  // the performance measure we are hillclimbing on
-  protected static int bspMode;               // perfo
+  protected static int bspMode;               // performance measure to do bootstrapping on
+
+  protected static double[] w;     
