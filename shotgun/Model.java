@@ -32,4 +32,5 @@ public abstract class Model implements Comparable
   protected static int bspMode;               // performance measure to do bootstrapping on
 
   protected static double[] w;                // weights weighted combination of performances
-  protect
+  protected static double weight=1;           // weight for weight decay
+  pro
