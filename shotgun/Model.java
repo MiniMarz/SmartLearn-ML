@@ -38,4 +38,9 @@ public abstract class Model implements Comparable
   /**
    * Add a model to this model.
    *
-   * @param model The 
+   * @param model The model to be added.
+  **/
+  public abstract void add(Predictions model);
+
+  /**
+ 
