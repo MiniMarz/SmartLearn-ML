@@ -43,4 +43,6 @@ public abstract class Model implements Comparable
   public abstract void add(Predictions model);
 
   /**
- 
+   * Substract a model to this model.
+   *
+   * @param model The model to
