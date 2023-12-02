@@ -33,4 +33,9 @@ public abstract class Model implements Comparable
 
   protected static double[] w;                // weights weighted combination of performances
   protected static double weight=1;           // weight for weight decay
-  protected static double decayCst;           // decay cst for weight dec
+  protected static double decayCst;           // decay cst for weight decay
+
+  /**
+   * Add a model to this model.
+   *
+   * @param model The 
