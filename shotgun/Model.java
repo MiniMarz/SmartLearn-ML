@@ -48,3 +48,8 @@ public abstract class Model implements Comparable
    * @param model The model to be substracted.
   **/
   public abstract void sub(Predictions model);
+
+  /**
+   * Compute a particular performance of this model.
+   *
+   * @param
