@@ -52,4 +52,6 @@ public abstract class Model implements Comparable
   /**
    * Compute a particular performance of this model.
    *
-   * @param
+   * @param i The performance measure.
+   * @return The value of the performance.
+ 
