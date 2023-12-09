@@ -60,4 +60,8 @@ public abstract class Model implements Comparable
   /**
    * Returns a model that only has a performance to be compared.
    *
-   * @param model The model to f
+   * @param model The model to fetch the performance from.
+  **/
+  public abstract Model justPerf();
+
+  /
