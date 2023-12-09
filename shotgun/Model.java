@@ -58,4 +58,6 @@ public abstract class Model implements Comparable
   public abstract double compute(int i);
 
   /**
-   * Returns a mod
+   * Returns a model that only has a performance to be compared.
+   *
+   * @param model The model to f
