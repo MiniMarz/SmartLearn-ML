@@ -64,4 +64,7 @@ public abstract class Model implements Comparable
   **/
   public abstract Model justPerf();
 
-  /
+  /**
+   * Compute the performance of this model.
+  **/
+  publi
