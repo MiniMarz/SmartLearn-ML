@@ -67,4 +67,6 @@ public abstract class Model implements Comparable
   /**
    * Compute the performance of this model.
   **/
-  publi
+  public void computePerformance()
+  {
+    this.performance=compute(mode);
