@@ -70,3 +70,7 @@ public abstract class Model implements Comparable
   public void computePerformance()
   {
     this.performance=compute(mode);
+  }
+
+  /**
+   * Print in a file and in stdout the performance
