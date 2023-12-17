@@ -76,4 +76,4 @@ public abstract class Model implements Comparable
    * Print in a file and in stdout the performances of this model
    *
    * @param out The file writer of the file.
-   *
+   * @param msg A message to be appended in front of each statement.
