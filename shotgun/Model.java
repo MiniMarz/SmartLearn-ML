@@ -77,3 +77,6 @@ public abstract class Model implements Comparable
    *
    * @param out The file writer of the file.
    * @param msg A message to be appended in front of each statement.
+  **/
+  public void report(FileWriter out, String msg)
+  
