@@ -79,4 +79,6 @@ public abstract class Model implements Comparable
    * @param msg A message to be appended in front of each statement.
   **/
   public void report(FileWriter out, String msg)
-  
+  {
+    double perf;
+    int numPerf=measure.length;
