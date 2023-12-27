@@ -82,3 +82,6 @@ public abstract class Model implements Comparable
   {
     double perf;
     int numPerf=measure.length;
+    // bsp performance is expensive.
+    if (mode!=BSP)
+      numPerf=measure.l
