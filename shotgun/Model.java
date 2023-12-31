@@ -89,4 +89,5 @@ public abstract class Model implements Comparable
     {
       for (int i=0; i<numPerf; i++)
       {
-       
+        perf=compute(i);
+        System.out.println(msg+" "+numModels+" "+meas
