@@ -91,4 +91,7 @@ public abstract class Model implements Comparable
       {
         perf=compute(i);
         System.out.println(msg+" "+numModels+" "+measure[i]+" "+perf+" "+name);
-        out.write(numModels+" "+measure[i]+" "+perf
+        out.write(numModels+" "+measure[i]+" "+perf+" "+name+"\n");
+      }
+      out.flush();
+    } catch(IOExcep
