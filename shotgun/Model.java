@@ -94,4 +94,8 @@ public abstract class Model implements Comparable
         out.write(numModels+" "+measure[i]+" "+perf+" "+name+"\n");
       }
       out.flush();
-    } catch(IOExcep
+    } catch(IOException e){System.out.println(e);}
+  }
+
+  /**
+   * Compare the performance of this model with an
