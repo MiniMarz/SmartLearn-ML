@@ -98,4 +98,7 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * Compare the performance of this model with an
+   * Compare the performance of this model with another model.
+   *
+   * @param o The model to be compared.
+   * @return 1
