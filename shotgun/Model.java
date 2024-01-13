@@ -106,4 +106,6 @@ public abstract class Model implements Comparable
   public int compareTo(Object o)
   {
     Model model=(Model) o;
-    double de
+    double delta=this.performance-model.getPerformance();
+    int value;
+    if (delta
