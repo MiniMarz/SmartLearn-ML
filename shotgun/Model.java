@@ -108,4 +108,7 @@ public abstract class Model implements Comparable
     Model model=(Model) o;
     double delta=this.performance-model.getPerformance();
     int value;
-    if (delta
+    if (delta>0)
+      value=1;
+    else if (delta<=eps && delta>=eps)
+     
