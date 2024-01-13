@@ -103,4 +103,7 @@ public abstract class Model implements Comparable
    * @param o The model to be compared.
    * @return 1 if this model has greater performance, 0 if equal and -1 otherwise.
   **/
-  pu
+  public int compareTo(Object o)
+  {
+    Model model=(Model) o;
+    double de
