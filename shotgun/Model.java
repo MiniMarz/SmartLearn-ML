@@ -116,4 +116,6 @@ public abstract class Model implements Comparable
       value=-1;
     // for RMSE smaller is better
     if (mode==RMS || mode==CST || mode==NRM || mode==MXE)
-      return -1*valu
+      return -1*value;
+    // if we are doing bootstrapping
+    else if (mode==BSP 
