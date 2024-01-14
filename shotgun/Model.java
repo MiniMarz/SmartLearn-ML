@@ -118,4 +118,4 @@ public abstract class Model implements Comparable
     if (mode==RMS || mode==CST || mode==NRM || mode==MXE)
       return -1*value;
     // if we are doing bootstrapping
-    else if (mode==BSP 
+    else if (mode==BSP && (bspMode==RMS || bspMode==CST || bspMode==NRM || bspMode==MX
