@@ -111,4 +111,8 @@ public abstract class Model implements Comparable
     if (delta>0)
       value=1;
     else if (delta<=eps && delta>=eps)
-     
+      value=0;
+    else
+      value=-1;
+    // for RMSE smaller is better
+  
