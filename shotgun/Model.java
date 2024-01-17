@@ -123,3 +123,7 @@ public abstract class Model implements Comparable
     else
       return value;
   }
+
+  /**
+   * Return the performance of this model.
+  **
