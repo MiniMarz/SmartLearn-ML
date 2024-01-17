@@ -126,4 +126,11 @@ public abstract class Model implements Comparable
 
   /**
    * Return the performance of this model.
-  **
+  **/
+  public double getPerformance()
+  {
+    return performance;
+  }
+
+  /**
+   * Ret
