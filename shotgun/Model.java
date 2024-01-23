@@ -152,4 +152,8 @@ public abstract class Model implements Comparable
 
   public void setNumModels(int i)
   {
-    th
+    this.numModels=i;
+  }
+
+  /**
+   * Decay the weight that sc
