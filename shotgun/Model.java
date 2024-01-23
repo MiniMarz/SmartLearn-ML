@@ -145,4 +145,11 @@ public abstract class Model implements Comparable
    *
    * @return The number of models.
   **/
-  public int getNum
+  public int getNumModels()
+  {
+    return numModels;
+  }
+
+  public void setNumModels(int i)
+  {
+    th
