@@ -133,4 +133,11 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * Ret
+   * Return the name of this model.
+  **/
+  public String getName()
+  {
+    return name;
+  }
+
+  /
