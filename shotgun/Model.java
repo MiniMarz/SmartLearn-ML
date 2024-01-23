@@ -168,4 +168,10 @@ public abstract class Model implements Comparable
   **/
   public static void setDecay(double decayCst)
   {
-    Model.decayCst=decay
+    Model.decayCst=decayCst;
+  }
+
+  /**
+   * Return the id of these predictions.
+  **/
+ 
