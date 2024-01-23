@@ -156,4 +156,8 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * Decay the weight that sc
+   * Decay the weight that scales each added model.
+  **/
+  public static void decay()
+  {
+    we
