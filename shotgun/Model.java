@@ -166,4 +166,6 @@ public abstract class Model implements Comparable
   /**
    * Set the decay constant.
   **/
-  
+  public static void setDecay(double decayCst)
+  {
+    Model.decayCst=decay
