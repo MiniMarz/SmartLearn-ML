@@ -141,4 +141,8 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * Return the number of models that have been ad
+   * Return the number of models that have been added.
+   *
+   * @return The number of models.
+  **/
+  public int getNum
