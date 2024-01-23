@@ -160,4 +160,10 @@ public abstract class Model implements Comparable
   **/
   public static void decay()
   {
-    we
+    weight=weight*decayCst;
+  }
+
+  /**
+   * Set the decay constant.
+  **/
+  
