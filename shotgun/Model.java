@@ -140,4 +140,5 @@ public abstract class Model implements Comparable
     return name;
   }
 
-  /
+  /**
+   * Return the number of models that have been ad
