@@ -174,4 +174,10 @@ public abstract class Model implements Comparable
   /**
    * Return the id of these predictions.
   **/
- 
+  public int getID()
+  {
+    return id;
+  }
+
+  /**
+   * W
