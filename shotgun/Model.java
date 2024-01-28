@@ -182,4 +182,8 @@ public abstract class Model implements Comparable
   /**
    * Write this model to a file.
    *
-   * @param out The file writer of the
+   * @param out The file writer of the file.
+  **/
+  public abstract void write(FileWriter out);
+
+  publi
