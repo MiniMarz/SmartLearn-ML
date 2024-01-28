@@ -180,4 +180,6 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * W
+   * Write this model to a file.
+   *
+   * @param out The file writer of the
