@@ -195,4 +195,9 @@ public abstract class Model implements Comparable
   **/
   public boolean equals(Object o)
   {
- 
+    Model model=(Model) o;
+    return id==model.getID();
+  }
+
+  /**
+   * 
