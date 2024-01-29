@@ -186,4 +186,7 @@ public abstract class Model implements Comparable
   **/
   public abstract void write(FileWriter out);
 
-  publi
+  public abstract Model copy();
+
+  /**
+   * Two models are equal if t
