@@ -189,4 +189,6 @@ public abstract class Model implements Comparable
   public abstract Model copy();
 
   /**
-   * Two models are equal if t
+   * Two models are equal if they have the same id.
+   *
+   * @return True if this model has the same id as th
