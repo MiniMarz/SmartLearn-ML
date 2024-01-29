@@ -191,4 +191,8 @@ public abstract class Model implements Comparable
   /**
    * Two models are equal if they have the same id.
    *
-   * @return True if this model has the same id as th
+   * @return True if this model has the same id as the other model.
+  **/
+  public boolean equals(Object o)
+  {
+ 
