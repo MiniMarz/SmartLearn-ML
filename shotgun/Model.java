@@ -204,4 +204,10 @@ public abstract class Model implements Comparable
    *
    * @param mode The performance measure.
   **/
-  public static void setMode(int mode
+  public static void setMode(int mode)
+  {
+    Model.mode=mode;
+  }
+
+  /**
+   * Set the weights for weigthed combinatio
