@@ -202,4 +202,6 @@ public abstract class Model implements Comparable
   /**
    * Set the performance measure that we hillclimb on.
    *
-   * @param mode
+   * @param mode The performance measure.
+  **/
+  public static void setMode(int mode
