@@ -210,4 +210,6 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * Set the weights for weigthed combinatio
+   * Set the weights for weigthed combination of performances.
+   *
+   * @param weight The weights in the followi
