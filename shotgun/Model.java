@@ -200,4 +200,6 @@ public abstract class Model implements Comparable
   }
 
   /**
-   * 
+   * Set the performance measure that we hillclimb on.
+   *
+   * @param mode
