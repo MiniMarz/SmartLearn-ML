@@ -212,4 +212,6 @@ public abstract class Model implements Comparable
   /**
    * Set the weights for weigthed combination of performances.
    *
-   * @param weight The weights in the followi
+   * @param weight The weights in the following order: ACC, RMS, and ROC.
+  **/
+  public static void setWeight(dou
