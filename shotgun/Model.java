@@ -214,4 +214,8 @@ public abstract class Model implements Comparable
    *
    * @param weight The weights in the following order: ACC, RMS, and ROC.
   **/
-  public static void setWeight(dou
+  public static void setWeight(double[] weight)
+  {
+    Model.w=new double[3];
+    w[0]=weight[0];
+    w[1]=weig
