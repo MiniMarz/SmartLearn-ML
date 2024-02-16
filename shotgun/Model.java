@@ -218,4 +218,8 @@ public abstract class Model implements Comparable
   {
     Model.w=new double[3];
     w[0]=weight[0];
-    w[1]=weig
+    w[1]=weight[1];
+    w[2]=weight[2];
+  }
+
+}
