@@ -1,1 +1,1 @@
-This repository contains ren
+This repository contains renewed Java code implementing various machine learning algorithms 
