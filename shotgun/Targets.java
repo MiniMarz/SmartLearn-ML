@@ -109,3 +109,42 @@ public class Targets
    * Returns the set of labels.
   **/
   public int[] getTrueValue()
+  {
+    return trueValue;
+  }
+
+  /**
+   * Returns the label of a particular example.
+   *
+   * @param i The index of the example.
+  **/
+  public int getTrueValue(int i)
+  {
+    return trueValue[i];
+  }
+
+  /**
+   * Returns the number of positive labels.
+  **/
+  public int getTotal_true_0()
+  {
+    return total_true_0;
+  }
+
+  /**
+   * Returns the number of negative labels.
+  **/
+  public int getTotal_true_1()
+  {
+    return total_true_1;
+  }
+
+  /**
+   * Returns the number of examples.
+  **/
+  public int getSize()
+  {
+    return trueValue.length;
+  }
+
+}
