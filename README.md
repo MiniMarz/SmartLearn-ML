@@ -2,4 +2,8 @@ This repository contains renewed Java code implementing various machine learning
 
 * Swift and simple **k-nearest neighbor** algorithm.
 
-* Utilization of **k-means** algorithm accompanied by MDL for model sele
+* Utilization of **k-means** algorithm accompanied by MDL for model selection.
+
+* Features an implementation of **neural-nets**.
+
+* Emphasizes a **
