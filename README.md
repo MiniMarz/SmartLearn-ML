@@ -7,3 +7,5 @@ This repository contains renewed Java code implementing various machine learning
 * Features an implementation of **neural-nets**.
 
 * Emphasizes a **Gibbs sampling** algorithm to detect motifs in sequences.
+
+* Incorporates a **Genetic Algorithm** that solves the 8 queens problem. 
