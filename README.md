@@ -6,4 +6,4 @@ This repository contains renewed Java code implementing various machine learning
 
 * Features an implementation of **neural-nets**.
 
-* Emphasizes a **
+* Emphasizes a **Gibbs sampling** algorithm to detect motifs in sequences.
