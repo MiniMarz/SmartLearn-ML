@@ -9,3 +9,5 @@ This repository contains renewed Java code implementing various machine learning
 * Emphasizes a **Gibbs sampling** algorithm to detect motifs in sequences.
 
 * Incorporates a **Genetic Algorithm** that solves the 8 queens problem. 
+
+* Greedy **agglomerative clustering** coupled with basic graphing.
