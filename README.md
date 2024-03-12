@@ -11,3 +11,5 @@ This repository contains renewed Java code implementing various machine learning
 * Incorporates a **Genetic Algorithm** that solves the 8 queens problem. 
 
 * Greedy **agglomerative clustering** coupled with basic graphing.
+
+* Execution of an experiment involving **evolutionary neural-nets*
