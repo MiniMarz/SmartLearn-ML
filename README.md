@@ -12,4 +12,8 @@ This repository contains renewed Java code implementing various machine learning
 
 * Greedy **agglomerative clustering** coupled with basic graphing.
 
-* Execution of an experiment involving **evolutionary neural-nets*
+* Execution of an experiment involving **evolutionary neural-nets**.
+
+* Update on **Ensemble Selection** method (shotgun).
+
+This code 
