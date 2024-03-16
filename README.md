@@ -16,4 +16,4 @@ This repository contains renewed Java code implementing various machine learning
 
 * Update on **Ensemble Selection** method (shotgun).
 
-This code is brought to you by MiniMarz, providing a fresh take on previously implemented ML algorithms, with an aim to provide a starting
+This code is brought to you by MiniMarz, providing a fresh take on previously implemented ML algorithms, with an aim to provide a starting point and reference for those delving into the world of machine learning.
